@@ -385,6 +385,18 @@
   text-shadow: 0 0 18px color-mix(in srgb, var(--team-accent) 50%, transparent);
 }
 
+.team-emblem img {
+  position: absolute;
+  z-index: 1;
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+}
+
+.team-emblem.has-logo span {
+  visibility: hidden;
+}
+
 .emblem-gen-g span {
   font-style: italic;
   font-size: 32px;

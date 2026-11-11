@@ -1,6 +1,4 @@
-import {
-  useState,
-  type CSSProperties } from 'react'
+import { useState, type CSSProperties } from 'react'
 import './App.css'
 
 type Team = {
@@ -13,77 +11,16 @@ type Team = {
 }
 
 const teams: Team[] = [
-  { id: 't1',
-    name: 'T1',
-    shortName: 'T1',
-    mark: 'T1',
-    accent: '#e84048',
-    motto: 'T1' },
-  { id: 'gen-g',
-    name: 'Gen.G',
-    shortName: 'Gen.G',
-    mark: 'G',
-    accent: '#cfaa43',
-    motto: 'GEN.G'
-  },
-  { id: 'hle',
-    name: 'Hanwha Life Esports',
-    shortName: 'HLE',
-    mark: 'H',
-    accent: '#ff702d',
-    motto: 'HLE'
-  },
-  { id: 'kt',
-    name: 'KT Rolster',
-    shortName: 'KT',
-    mark: 'K',
-    accent: '#ed2939',
-    motto: 'KT'
-  },
-  { id: 'DK',
-    name: 'Dplus KIA',
-    shortName: 'DK',
-    mark: 'D',
-    accent: '#7e9cff',
-    motto: 'DK'
-  },
-  { id: 'fearx',
-    name: 'BNK FEARX',
-    shortName: 'FEARX',
-    mark: 'F',
-    accent: '#ff8a28',
-    motto: 'FEARX'
-  },
-  { id: 'drx',
-    name: 'DRX',
-    shortName: 'DRX',
-    mark: 'D',
-    accent: '#5b9dff',
-    motto: 'DRX'
-  },
-  { id: 'nongshim',
-    name: 'NS RedForce',
-    shortName: 'NS',
-    mark: 'N',
-    accent: '#e53d48',
-    motto: 'NS'
-  },
-  {
-    id: 'brion',
-    name: 'OK BRION',
-    shortName: 'BRION',
-    mark: 'B',
-    accent: '#70bd56',
-    motto: 'BRION'
-  },
-  {
-    id: 'freecs',
-    name: 'DN Freecs',
-    shortName: 'DNF',
-    mark: 'F',
-    accent: '#e3a747',
-    motto: 'FREECS'
-  }
+  { id: 't1', name: 'T1', shortName: 'T1', mark: 'T1', accent: '#e84048', motto: 'LEGENDS NEVER DIE' },
+  { id: 'gen-g', name: 'Gen.G', shortName: 'GEN', mark: 'G', accent: '#cfaa43', motto: 'GOLDEN ERA' },
+  { id: 'hle', name: 'Hanwha Life Esports', shortName: 'HLE', mark: 'H', accent: '#ff702d', motto: 'LIFE IS A CHALLENGE' },
+  { id: 'kt', name: 'KT Rolster', shortName: 'KT', mark: 'KT', accent: '#ed2939', motto: 'REAL GAMING' },
+  { id: 'dplus', name: 'Dplus KIA', shortName: 'DK', mark: 'DK', accent: '#7e9cff', motto: 'DREAM. PLAY. WIN.' },
+  { id: 'fearx', name: 'BNK FEARX', shortName: 'BFX', mark: 'F', accent: '#ff8a28', motto: 'FEAR NOTHING' },
+  { id: 'drx', name: 'DRX', shortName: 'DRX', mark: 'D', accent: '#5b9dff', motto: 'WE ARE DRX' },
+  { id: 'nongshim', name: 'NS RedForce', shortName: 'NS', mark: 'N', accent: '#e53d48', motto: 'RED FORCE' },
+  { id: 'brion', name: 'OK BRION', shortName: 'BRO', mark: 'B', accent: '#70bd56', motto: 'BRION ESPORTS' },
+  { id: 'freecs', name: 'DN Freecs', shortName: 'DNF', mark: 'F', accent: '#e3a747', motto: 'PLAY YOUR WAY' },
 ]
 
 function App() {
@@ -135,7 +72,15 @@ function App() {
               aria-pressed={selectedTeam?.id === team.id}
             >
               <span className="card-topline"><span>{String(index + 1).padStart(2, '0')}</span><span className="card-arrow">↗</span></span>
-              <span className={`team-emblem emblem-${team.id}`} aria-hidden="true"><span>{team.mark}</span></span>
+              <span className={`team-emblem emblem-${team.id}`} aria-hidden="true">
+                <img
+                  src={`/teams/${team.id}.png`}
+                  alt=""
+                  onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-logo')}
+                  onError={(event) => event.currentTarget.remove()}
+                />
+                <span>{team.mark}</span>
+              </span>
               <span className="team-name">{team.name}</span>
               <span className="team-motto">{team.motto}</span>
               <span className="card-footer"><span>{team.shortName}</span><span className="footer-dash" /></span>
