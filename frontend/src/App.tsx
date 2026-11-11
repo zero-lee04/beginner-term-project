@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react'
+import { useState, type CSSProperties, type FormEvent } from 'react'
 import './App.css'
 
 type Team = {
@@ -23,24 +23,95 @@ const teams: Team[] = [
   { id: 'dn', name: 'DN SOOPers', shortName: 'DNS', mark: 'DN', accent: '#0C50F1', motto: 'STAY SHARP' },
 ]
 
+function LoginScreen({ onBack }: { onBack: () => void }) {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [message, setMessage] = useState('')
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setMessage('Firebase 인증은 아직 연결되지 않았습니다. 입력 화면 미리보기입니다.')
+  }
+
+  return (
+    <section className="login-section">
+      <div className="login-background-mark" aria-hidden="true">LCK</div>
+      <div className="login-card">
+        <button className="login-back" type="button" onClick={onBack}>
+          <span aria-hidden="true">←</span> 홈으로 돌아가기
+        </button>
+
+        <div className="login-kicker"><span /> LCK FAN ACCOUNT</div>
+        <div className="login-monogram" aria-hidden="true">L</div>
+        <h1>다시, 협곡으로.</h1>
+        <p className="login-description">
+          로그인하고 좋아하는 팀과 함께<br />
+          LCK를 더 가까이 즐겨보세요.
+        </p>
+
+        <form className="login-form" onSubmit={handleSubmit}>
+          <label htmlFor="login-email">이메일</label>
+          <input
+            id="login-email"
+            type="email"
+            autoComplete="email"
+            placeholder="name@example.com"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            required
+          />
+
+          <label htmlFor="login-password">비밀번호</label>
+          <input
+            id="login-password"
+            type="password"
+            autoComplete="current-password"
+            placeholder="비밀번호를 입력하세요"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+          />
+
+          <button className="login-submit" type="submit">
+            로그인 <span aria-hidden="true">↗</span>
+          </button>
+          {message && <p className="login-feedback" role="status">{message}</p>}
+        </form>
+
+        <p className="login-preview-note">
+          지금은 화면 미리보기 단계예요. 실제 계정 인증은 Firebase 연결 후 사용할 수 있습니다.
+        </p>
+      </div>
+    </section>
+  )
+}
+
 function App() {
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null)
+  const [showLogin, setShowLogin] = useState(false)
 
   return (
     <main className="page-shell">
       <header className="topbar">
-        <a className="wordmark" href="#home" aria-label="LCK 홈">
+        <a className="wordmark" href="#home" aria-label="LCK 홈" onClick={() => setShowLogin(false)}>
           <span className="wordmark-symbol">L</span>
           <span>LCK<span className="wordmark-period">.</span></span>
         </a>
-        <nav className="topnav" aria-label="주요 메뉴">
-          <a className="nav-active" href="#teams">TEAMS</a>
-          <a href="#teams">LEAGUE</a>
-          <a href="#teams">COMMUNITY</a>
-        </nav>
-        <div className="season-tag"><span className="live-dot" /> 2026 SEASON</div>
+        {!showLogin && (
+          <nav className="topnav" aria-label="주요 메뉴">
+            <a className="nav-active" href="#teams">TEAMS</a>
+            <a href="#teams">LEAGUE</a>
+            <a href="#teams">COMMUNITY</a>
+          </nav>
+        )}
+        {showLogin ? (
+          <button className="login-header-button" type="button" onClick={() => setShowLogin(false)}>BACK TO HOME</button>
+        ) : (
+          <button className="login-header-button" type="button" onClick={() => setShowLogin(true)}>LOGIN <span aria-hidden="true">↗</span></button>
+        )}
       </header>
 
+      {showLogin ? <LoginScreen onBack={() => setShowLogin(false)} /> : <>
       <section className="hero" id="home">
         <div className="hero-watermark" aria-hidden="true">LCK</div>
         <div className="hero-kicker"><span /> LEAGUE OF LEGENDS CHAMPIONS KOREA</div>
@@ -99,6 +170,7 @@ function App() {
         <span>LOOP IN. LOCK IN. LCK.</span>
         <span>MADE FOR LCK FANS <b>✳</b> 2026</span>
       </footer>
+      </>}
     </main>
   )
 }
