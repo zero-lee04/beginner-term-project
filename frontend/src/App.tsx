@@ -11,16 +11,16 @@ type Team = {
 }
 
 const teams: Team[] = [
-  { id: 't1', name: 'T1', shortName: 'T1', mark: 'T1', accent: '#e84048', motto: 'LEGENDS NEVER DIE' },
-  { id: 'gen-g', name: 'Gen.G', shortName: 'GEN', mark: 'G', accent: '#cfaa43', motto: 'GOLDEN ERA' },
-  { id: 'hle', name: 'Hanwha Life Esports', shortName: 'HLE', mark: 'H', accent: '#ff702d', motto: 'LIFE IS A CHALLENGE' },
-  { id: 'kt', name: 'KT Rolster', shortName: 'KT', mark: 'KT', accent: '#ed2939', motto: 'REAL GAMING' },
-  { id: 'dplus', name: 'Dplus KIA', shortName: 'DK', mark: 'DK', accent: '#7e9cff', motto: 'DREAM. PLAY. WIN.' },
-  { id: 'fearx', name: 'BNK FEARX', shortName: 'BFX', mark: 'F', accent: '#ff8a28', motto: 'FEAR NOTHING' },
-  { id: 'drx', name: 'DRX', shortName: 'DRX', mark: 'D', accent: '#5b9dff', motto: 'WE ARE DRX' },
-  { id: 'nongshim', name: 'NS RedForce', shortName: 'NS', mark: 'N', accent: '#e53d48', motto: 'RED FORCE' },
-  { id: 'brion', name: 'OK BRION', shortName: 'BRO', mark: 'B', accent: '#70bd56', motto: 'BRION ESPORTS' },
-  { id: 'freecs', name: 'DN Freecs', shortName: 'DNF', mark: 'F', accent: '#e3a747', motto: 'PLAY YOUR WAY' },
+  { id: 't1', name: 'T1', shortName: 'T1', mark: 'T1', accent: '#e84048', motto: 'Limitless: Never Ending Story' },
+  { id: 'gen-g', name: 'Gen.G', shortName: 'GEN', mark: 'G', accent: '#cfaa43', motto: 'CHANGE THE GAME, CHANGE THE WORLD' },
+  { id: 'hle', name: 'Hanwha Life Esports', shortName: 'HLE', mark: 'H', accent: '#ff702d', motto: 'BeyondTheChallenge' },
+  { id: 'kt', name: 'KT Rolster', shortName: 'KT', mark: 'KT', accent: '#ed2939', motto: 'BreakTheLimits' },
+  { id: 'dk', name: 'Dplus KIA', shortName: 'DK', mark: 'DK', accent: '#7e9cff', motto: 'ShowMeYourMadness' },
+  { id: 'bnk', name: 'BNK FEARX', shortName: 'BFX', mark: 'F', accent: '#ff8a28', motto: 'NoDoubt' },
+  { id: 'drx', name: 'KIWOOM DRX', shortName: 'DRX', mark: 'D', accent: '#5b9dff', motto: 'Unbreakables' },
+  { id: 'nongshim', name: 'NS RedForce', shortName: 'NS', mark: 'N', accent: '#e53d48', motto: 'TheUltimateRed' },
+  { id: 'brion', name: 'HANJIN BRION', shortName: 'BRO', mark: 'B', accent: '#70bd56', motto: 'DeliverTheMoment' },
+  { id: 'dn', name: 'DN SOOPers', shortName: 'DNS', mark: 'DN', accent: '#0C50F1', motto: 'STAY SHARP' },
 ]
 
 function App() {
