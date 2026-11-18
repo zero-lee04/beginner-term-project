@@ -1,4 +1,7 @@
-import { useState, type CSSProperties, type FormEvent } from 'react'
+import { useEffect, useState, type CSSProperties, type FormEvent } from 'react'
+import { collection, getDocs, orderBy, query } from 'firebase/firestore'
+import { db } from './firebase'
+import rosterData from '../data/lck-rosters-2026.json'
 import './App.css'
 
 type Team = {
@@ -22,6 +25,29 @@ const teams: Team[] = [
   { id: 'brion', name: 'HANJIN BRION', shortName: 'BRO', mark: 'B', accent: '#70bd56', motto: 'DeliverTheMoment' },
   { id: 'dn', name: 'DN SOOPers', shortName: 'DNS', mark: 'DN', accent: '#0C50F1', motto: 'STAY SHARP' },
 ]
+
+type RosterPlayer = {
+  id: string
+  role: string
+  label: string
+  name: string
+  koreanName: string
+  number: string
+  sortOrder: number
+}
+
+function getLocalRoster(teamId: string): RosterPlayer[] {
+  const team = rosterData.teams.find((rosterTeam) => rosterTeam.id === teamId)
+  return (team?.players ?? []).map((player, index) => ({
+    id: `${teamId}-${player.role}-${index}`,
+    role: player.role,
+    label: player.label,
+    name: player.name,
+    koreanName: player.koreanName,
+    number: String(index + 1).padStart(2, '0'),
+    sortOrder: index + 1,
+  }))
+}
 
 function LoginScreen({ onBack }: { onBack: () => void }) {
   const [email, setEmail] = useState('')
@@ -86,9 +112,197 @@ function LoginScreen({ onBack }: { onBack: () => void }) {
   )
 }
 
+function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBack: () => void }) {
+  const [players, setPlayers] = useState<RosterPlayer[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+    let isActive = true
+
+    async function loadRoster() {
+      if (season === rosterData.season) {
+        if (isActive) setPlayers(getLocalRoster(team.id))
+        setLoading(false)
+        return
+      }
+
+      try {
+        const playersQuery = query(
+          collection(db, 'seasons', String(season), 'teams', team.id, 'players'),
+          orderBy('sortOrder'),
+        )
+        let snapshot = await getDocs(playersQuery)
+        const loadedPlayers = snapshot.docs.map((playerDoc) => {
+          const data = playerDoc.data()
+          const sortOrder = Number(data.sortOrder ?? 0)
+
+          return {
+            id: playerDoc.id,
+            role: String(data.role ?? ''),
+            label: String(data.label ?? ''),
+            name: String(data.name ?? ''),
+            koreanName: String(data.koreanName ?? ''),
+            number: String(data.number ?? String(sortOrder).padStart(2, '0')),
+            sortOrder,
+          }
+        })
+
+        if (isActive) setPlayers(loadedPlayers)
+      } catch {
+        if (isActive) {
+          setError('로스터를 불러오지 못했습니다. Firestore 데이터와 Rules를 확인해 주세요.')
+        }
+      } finally {
+        if (isActive) setLoading(false)
+      }
+    }
+
+    void loadRoster()
+
+    return () => {
+      isActive = false
+    }
+  }, [season, team.id])
+
+  return (
+    <section className="roster-section" style={{ '--team-accent': team.accent } as CSSProperties}>
+      <div className="roster-watermark" aria-hidden="true">{team.shortName}</div>
+      <div className="roster-content">
+        <button className="roster-back" type="button" onClick={onBack}>
+          <span aria-hidden="true">←</span> 전체 팀 목록
+        </button>
+
+        <div className="roster-heading">
+          <div className="roster-logo" aria-hidden="true">
+            <img
+              src={`/teams/${team.id}.png`}
+              alt=""
+              onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-logo')}
+              onError={(event) => event.currentTarget.remove()}
+            />
+            <span>{team.mark}</span>
+          </div>
+          <div>
+            <p className="eyebrow">{season} LCK TEAM ROSTER</p>
+            <h1>{team.shortName} <span>ROSTER</span></h1>
+            <p className="roster-subtitle">다섯 명의 선수, 하나의 목표.</p>
+          </div>
+        </div>
+
+        {loading ? (
+          <p className="roster-state">Firestore에서 로스터를 불러오는 중...</p>
+        ) : error ? (
+          <p className="roster-state roster-state-error" role="alert">{error}</p>
+        ) : players.length === 0 ? (
+          <p className="roster-state">
+            아직 로스터 문서가 없습니다. Firestore의 <code>seasons/{season}/teams/{team.id}/players</code> 경로를 확인하세요.
+          </p>
+        ) : (
+          <>
+            <div className="roster-grid">
+              {players.map((player, index) => {
+                const roleColumn = ({ TOP: 1, JUNGLE: 2, MID: 3, BOT: 4, SUPPORT: 5 } as Record<string, number>)[player.role] ?? 1
+                const roleRow = players.slice(0, index).filter((previousPlayer) => previousPlayer.role === player.role).length + 1
+
+                return <article
+                  className="player-card"
+                  key={player.id}
+                  style={{
+                    '--player-index': index,
+                    '--role-column': roleColumn,
+                    '--role-row': roleRow,
+                  } as CSSProperties}
+                >
+                  <div className="player-card-topline">
+                    <span>{player.number}</span>
+                    <span className="player-role-en">{player.role}</span>
+                  </div>
+                  <div className="player-glyph" aria-hidden="true">
+                    {player.role === 'JUNGLE' ? 'Ⅱ' : player.role === 'SUPPORT' ? '✦' : player.role.slice(0, 1)}
+                  </div>
+                  <div className="player-info">
+                    <span className="player-role-ko">{player.label}</span>
+                    <h2>{player.name}</h2>
+                    <p>{player.koreanName}</p>
+                  </div>
+                  <span className="player-card-line" />
+                </article>
+              })}
+            </div>
+            <p className="roster-footnote">선수 명단은 {season} LCK 로스터 기준입니다.</p>
+          </>
+        )}
+      </div>
+    </section>
+  )
+}
+
 function App() {
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null)
+  const [selectedSeason, setSelectedSeason] = useState(2026)
+  const [availableSeasons, setAvailableSeasons] = useState([2026])
+  const [seasonTeams, setSeasonTeams] = useState(teams)
   const [showLogin, setShowLogin] = useState(false)
+  const [showRoster, setShowRoster] = useState(false)
+
+  useEffect(() => {
+    let isActive = true
+
+    async function loadSeasons() {
+      try {
+        const snapshot = await getDocs(collection(db, 'seasons'))
+        const years = snapshot.docs
+          .map((seasonDocument) => Number(seasonDocument.id))
+          .filter((year) => Number.isInteger(year))
+          .sort((first, second) => second - first)
+
+        if (isActive && years.length > 0) {
+          setAvailableSeasons(years)
+          setSelectedSeason((currentSeason) => years.includes(currentSeason) ? currentSeason : years[0])
+        }
+      } catch {
+        // Keep 2026 available until the season archive is configured.
+      }
+    }
+
+    void loadSeasons()
+    return () => {
+      isActive = false
+    }
+  }, [])
+
+  useEffect(() => {
+    let isActive = true
+
+    async function loadSeasonTeams() {
+      try {
+        const snapshot = await getDocs(collection(db, 'seasons', String(selectedSeason), 'teams'))
+        const loadedTeams = snapshot.docs.map((teamDocument) => {
+          const data = teamDocument.data()
+          const fallbackTeam = teams.find((team) => team.id === teamDocument.id)
+
+          return {
+            id: teamDocument.id,
+            name: String(data.name ?? fallbackTeam?.name ?? teamDocument.id),
+            shortName: String(data.shortName ?? fallbackTeam?.shortName ?? teamDocument.id.toUpperCase()),
+            mark: String(data.mark ?? fallbackTeam?.mark ?? teamDocument.id.slice(0, 1).toUpperCase()),
+            accent: String(data.accent ?? fallbackTeam?.accent ?? '#e84048'),
+            motto: String(data.motto ?? fallbackTeam?.motto ?? ''),
+          }
+        })
+
+        if (isActive) setSeasonTeams(loadedTeams.length > 0 ? loadedTeams : (selectedSeason === 2026 ? teams : []))
+      } catch {
+        if (isActive) setSeasonTeams(selectedSeason === 2026 ? teams : [])
+      }
+    }
+
+    void loadSeasonTeams()
+    return () => {
+      isActive = false
+    }
+  }, [selectedSeason])
 
   return (
     <main className="page-shell">
@@ -111,7 +325,12 @@ function App() {
         )}
       </header>
 
-      {showLogin ? <LoginScreen onBack={() => setShowLogin(false)} /> : <>
+      {showLogin ? <LoginScreen onBack={() => setShowLogin(false)} /> : showRoster && selectedTeam ? (
+        <TeamRoster team={selectedTeam} season={selectedSeason} onBack={() => {
+          setShowRoster(false)
+          setSelectedTeam(null)
+        }} />
+      ) : <>
       <section className="hero" id="home">
         <div className="hero-watermark" aria-hidden="true">LCK</div>
         <div className="hero-kicker"><span /> LEAGUE OF LEGENDS CHAMPIONS KOREA</div>
@@ -130,15 +349,29 @@ function App() {
             <p className="eyebrow">THE BATTLE FOR GLORY</p>
             <h2>TEAMS <span>OF LCK</span></h2>
           </div>
-          <p className="section-note">열 팀의 이야기, 하나의 무대.<br />응원하는 팀을 선택해 보세요.</p>
+          <div className="season-controls">
+            <label htmlFor="season-select">SEASON ARCHIVE</label>
+            <select
+              id="season-select"
+              className="season-select"
+              value={selectedSeason}
+              onChange={(event) => setSelectedSeason(Number(event.target.value))}
+            >
+              {availableSeasons.map((season) => <option key={season} value={season}>{season} SEASON</option>)}
+            </select>
+            <p className="section-note">응원하는 팀을 선택해 보세요.</p>
+          </div>
         </div>
 
-        <div className="team-grid">
-          {teams.map((team, index) => (
+        {seasonTeams.length > 0 ? <div className="team-grid">
+          {seasonTeams.map((team, index) => (
             <button
               className={`team-card ${selectedTeam?.id === team.id ? 'team-card-selected' : ''}`}
               key={team.id}
-              onClick={() => setSelectedTeam(selectedTeam?.id === team.id ? null : team)}
+              onClick={() => {
+                setSelectedTeam(team)
+                setShowRoster(true)
+              }}
               style={{ '--team-accent': team.accent, '--card-index': index } as CSSProperties}
               aria-pressed={selectedTeam?.id === team.id}
             >
@@ -157,7 +390,7 @@ function App() {
               <span className="card-footer"><span>{team.shortName}</span><span className="footer-dash" /></span>
             </button>
           ))}
-        </div>
+        </div> : <p className="season-empty">이 시즌의 팀 목록은 아직 등록되지 않았습니다.</p>}
 
         <div className={`selection-panel ${selectedTeam ? 'selection-visible' : ''}`} aria-live="polite">
           <span className="selection-label">YOUR TEAM</span>
