@@ -1041,6 +1041,33 @@
   gap: 12px;
 }
 
+.roster-squad + .roster-squad {
+  margin-top: 40px;
+}
+
+.roster-squad-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0 0 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #39343a;
+}
+
+.roster-squad-heading h2 {
+  margin: 0;
+  color: #f4f0e8;
+  font: 700 18px 'Barlow Condensed', sans-serif;
+  letter-spacing: .08em;
+}
+
+.roster-squad-heading span {
+  color: var(--team-accent);
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: .08em;
+}
+
 .player-card {
   position: relative;
   min-width: 0;

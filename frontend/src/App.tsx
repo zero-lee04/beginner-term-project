@@ -28,6 +28,7 @@ const teams: Team[] = [
 
 type RosterPlayer = {
   id: string
+  league: string
   role: string
   label: string
   name: string
@@ -40,6 +41,7 @@ function getLocalRoster(teamId: string): RosterPlayer[] {
   const team = rosterData.teams.find((rosterTeam) => rosterTeam.id === teamId)
   return (team?.players ?? []).map((player, index) => ({
     id: `${teamId}-${player.role}-${index}`,
+    league: player.league ?? 'LCK',
     role: player.role,
     label: player.label,
     name: player.name,
@@ -139,6 +141,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
 
           return {
             id: playerDoc.id,
+            league: String(data.league ?? 'LCK'),
             role: String(data.role ?? ''),
             label: String(data.label ?? ''),
             name: String(data.name ?? ''),
@@ -200,37 +203,48 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
           </p>
         ) : (
           <>
-            <div className="roster-grid">
-              {players.map((player, index) => {
-                const roleColumn = ({ TOP: 1, JUNGLE: 2, MID: 3, BOT: 4, SUPPORT: 5 } as Record<string, number>)[player.role] ?? 1
-                const roleRow = players.slice(0, index).filter((previousPlayer) => previousPlayer.role === player.role).length + 1
+            {['LCK', 'LCK CL'].map((league) => {
+              const squadPlayers = players.filter((player) => player.league === league)
+              if (squadPlayers.length === 0) return null
 
-                return <article
-                  className="player-card"
-                  key={player.id}
-                  style={{
-                    '--player-index': index,
-                    '--role-column': roleColumn,
-                    '--role-row': roleRow,
-                  } as CSSProperties}
-                >
-                  <div className="player-card-topline">
-                    <span>{player.number}</span>
-                    <span className="player-role-en">{player.role}</span>
-                  </div>
-                  <div className="player-glyph" aria-hidden="true">
-                    {player.role === 'JUNGLE' ? 'Ⅱ' : player.role === 'SUPPORT' ? '✦' : player.role.slice(0, 1)}
-                  </div>
-                  <div className="player-info">
-                    <span className="player-role-ko">{player.label}</span>
-                    <h2>{player.name}</h2>
-                    <p>{player.koreanName}</p>
-                  </div>
-                  <span className="player-card-line" />
-                </article>
-              })}
-            </div>
-            <p className="roster-footnote">선수 명단은 {season} LCK 로스터 기준입니다.</p>
+              return <section className="roster-squad" key={league}>
+                <div className="roster-squad-heading">
+                  <h2>{league === 'LCK' ? 'LCK 1군' : 'LCK CHALLENGERS'}</h2>
+                  <span>{String(squadPlayers.length).padStart(2, '0')} PLAYERS</span>
+                </div>
+                <div className="roster-grid">
+                  {squadPlayers.map((player, index) => {
+                    const roleColumn = ({ TOP: 1, JUG: 2, JUNGLE: 2, MID: 3, BOT: 4, SUP: 5, SUPPORT: 5 } as Record<string, number>)[player.role] ?? 1
+                    const roleRow = squadPlayers.slice(0, index).filter((previousPlayer) => previousPlayer.role === player.role).length + 1
+
+                    return <article
+                      className="player-card"
+                      key={player.id}
+                      style={{
+                        '--player-index': index,
+                        '--role-column': roleColumn,
+                        '--role-row': roleRow,
+                      } as CSSProperties}
+                    >
+                      <div className="player-card-topline">
+                        <span>{player.number}</span>
+                        <span className="player-role-en">{player.role}</span>
+                      </div>
+                      <div className="player-glyph" aria-hidden="true">
+                        {player.role === 'JUNGLE' || player.role === 'JUG' ? 'Ⅱ' : player.role === 'SUPPORT' || player.role === 'SUP' ? '✦' : player.role.slice(0, 1)}
+                      </div>
+                      <div className="player-info">
+                        <span className="player-role-ko">{player.label}</span>
+                        <h2>{player.name}</h2>
+                        <p>{player.koreanName}</p>
+                      </div>
+                      <span className="player-card-line" />
+                    </article>
+                  })}
+                </div>
+              </section>
+            })}
+            <p className="roster-footnote">선수 명단은 {season} LCK CUP 통합 로스터 기준입니다.</p>
           </>
         )}
       </div>

@@ -33,6 +33,17 @@ function firestoreValue(value) {
   throw new TypeError(`지원하지 않는 Firestore 값입니다: ${String(value)}`)
 }
 
+function normalizeRole(role) {
+  const normalizedRole = String(role).toUpperCase()
+  if (normalizedRole === 'JUG') return 'JUNGLE'
+  if (normalizedRole === 'SUP') return 'SUPPORT'
+  return normalizedRole
+}
+
+function slug(value) {
+  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+}
+
 const [dataFiles, firebaseConfig] = await Promise.all([
   readdir(dataDirectory),
   readFile(firebaseConfigPath, 'utf8').then(JSON.parse),
@@ -67,8 +78,11 @@ for (const fileName of rosterFiles) {
   })
 
   for (const team of teams) {
-    if (!team.id || !team.name || !Array.isArray(team.players) || team.players.length !== 5) {
-      throw new Error(`${season} ${team.name ?? '알 수 없는 팀'}의 정보 또는 선수 5명 구성이 올바르지 않습니다.`)
+    const players = Array.isArray(team.players) ? team.players : []
+    const firstTeamPlayers = players.filter((player) => (player.league ?? 'LCK') === 'LCK').length
+    const challengerPlayers = players.filter((player) => player.league === 'LCK CL').length
+    if (!team.id || !team.name || firstTeamPlayers < 5 || challengerPlayers < 5) {
+      throw new Error(`${season} ${team.name ?? '알 수 없는 팀'}에는 LCK와 LCK CL 선수 명단이 각각 5명 이상 필요합니다.`)
     }
 
     const teamDocument = `${seasonDocument}/teams/${team.id}`
@@ -85,18 +99,29 @@ for (const fileName of rosterFiles) {
       },
     })
 
-    team.players.forEach((player, index) => {
-      const playerId = player.role.toLowerCase()
+    const roleCounts = new Map()
+    const leagueCounts = new Map()
+    players.forEach((player) => {
+      const league = player.league ?? 'LCK'
+      const role = normalizeRole(player.role)
+      const roleCount = roleCounts.get(role) ?? 0
+      const leagueIndex = leagueCounts.get(league) ?? 0
+      const playerId = roleCount === 0
+        ? role.toLowerCase()
+        : `${role.toLowerCase()}-${slug(league)}-${slug(player.name)}`
+      roleCounts.set(role, roleCount + 1)
+      leagueCounts.set(league, leagueIndex + 1)
       writes.push({
         update: {
           name: `${teamDocument}/players/${playerId}`,
           fields: {
-            role: firestoreValue(player.role),
+            league: firestoreValue(league),
+            role: firestoreValue(role),
             label: firestoreValue(player.label),
             name: firestoreValue(player.name),
             koreanName: firestoreValue(player.koreanName),
-            number: firestoreValue(String(index + 1).padStart(2, '0')),
-            sortOrder: firestoreValue(index + 1),
+            number: firestoreValue(String(leagueIndex + 1).padStart(2, '0')),
+            sortOrder: firestoreValue(writes.length),
           },
         },
       })
