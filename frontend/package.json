@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "seed:rosters": "node scripts/seed-rosters.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },
