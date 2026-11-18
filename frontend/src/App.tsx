@@ -2,6 +2,7 @@ import { useEffect, useState, type CSSProperties, type FormEvent } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from './firebase'
 import rosterData from '../data/lck-rosters-2026.json'
+import rosterData2025 from '../data/lck-rosters-2025.json'
 import './App.css'
 
 type Team = {
@@ -37,8 +38,8 @@ type RosterPlayer = {
   sortOrder: number
 }
 
-function getLocalRoster(teamId: string): RosterPlayer[] {
-  const team = rosterData.teams.find((rosterTeam) => rosterTeam.id === teamId)
+function getLocalRoster(season: number, teamId: string): RosterPlayer[] {
+  const team = getSeasonRosterData(season)?.teams.find((rosterTeam) => rosterTeam.id === teamId)
   return (team?.players ?? []).map((player, index) => ({
     id: `${teamId}-${player.role}-${index}`,
     league: player.league ?? 'LCK',
@@ -49,6 +50,10 @@ function getLocalRoster(teamId: string): RosterPlayer[] {
     number: String(index + 1).padStart(2, '0'),
     sortOrder: index + 1,
   }))
+}
+
+function getSeasonRosterData(season: number) {
+  return season === rosterData2025.season ? rosterData2025 : season === rosterData.season ? rosterData : null
 }
 
 function LoginScreen({ onBack }: { onBack: () => void }) {
@@ -123,8 +128,8 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
     let isActive = true
 
     async function loadRoster() {
-      if (season === rosterData.season) {
-        if (isActive) setPlayers(getLocalRoster(team.id))
+      if (getSeasonRosterData(season)) {
+        if (isActive) setPlayers(getLocalRoster(season, team.id))
         setLoading(false)
         return
       }
@@ -168,9 +173,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
     }
   }, [season, team.id])
 
-  const staff = season === rosterData.season
-    ? rosterData.teams.find((rosterTeam) => rosterTeam.id === team.id)?.staff ?? []
-    : []
+  const staff = getSeasonRosterData(season)?.teams.find((rosterTeam) => rosterTeam.id === team.id)?.staff ?? []
 
   return (
     <section className="roster-section" style={{ '--team-accent': team.accent } as CSSProperties}>
@@ -279,7 +282,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
 function App() {
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null)
   const [selectedSeason, setSelectedSeason] = useState(2026)
-  const [availableSeasons, setAvailableSeasons] = useState([2026])
+  const [availableSeasons, setAvailableSeasons] = useState([2026, 2025])
   const [seasonTeams, setSeasonTeams] = useState(teams)
   const [showLogin, setShowLogin] = useState(false)
   const [showRoster, setShowRoster] = useState(false)
@@ -295,12 +298,13 @@ function App() {
           .filter((year) => Number.isInteger(year))
           .sort((first, second) => second - first)
 
-        if (isActive && years.length > 0) {
-          setAvailableSeasons(years)
-          setSelectedSeason((currentSeason) => years.includes(currentSeason) ? currentSeason : years[0])
+        if (isActive) {
+          const availableYears = Array.from(new Set([...years, 2025, 2026])).sort((first, second) => second - first)
+          setAvailableSeasons(availableYears)
+          setSelectedSeason((currentSeason) => availableYears.includes(currentSeason) ? currentSeason : availableYears[0])
         }
       } catch {
-        // Keep 2026 available until the season archive is configured.
+        // Keep locally bundled seasons available if the archive is not configured.
       }
     }
 
@@ -330,9 +334,11 @@ function App() {
           }
         })
 
-        if (isActive) setSeasonTeams(loadedTeams.length > 0 ? loadedTeams : (selectedSeason === 2026 ? teams : []))
+        const localTeams = getSeasonRosterData(selectedSeason)?.teams
+        if (isActive) setSeasonTeams(loadedTeams.length > 0 ? loadedTeams : (localTeams ?? []))
       } catch {
-        if (isActive) setSeasonTeams(selectedSeason === 2026 ? teams : [])
+        const localTeams = getSeasonRosterData(selectedSeason)?.teams
+        if (isActive) setSeasonTeams(localTeams ?? [])
       }
     }
 

@@ -81,8 +81,8 @@ for (const fileName of rosterFiles) {
     const players = Array.isArray(team.players) ? team.players : []
     const firstTeamPlayers = players.filter((player) => (player.league ?? 'LCK') === 'LCK').length
     const challengerPlayers = players.filter((player) => player.league === 'LCK CL').length
-    if (!team.id || !team.name || firstTeamPlayers < 5 || challengerPlayers < 5) {
-      throw new Error(`${season} ${team.name ?? '알 수 없는 팀'}에는 LCK와 LCK CL 선수 명단이 각각 5명 이상 필요합니다.`)
+    if (!team.id || !team.name || firstTeamPlayers < 5 || (challengerPlayers > 0 && challengerPlayers < 5)) {
+      throw new Error(`${season} ${team.name ?? '알 수 없는 팀'}에는 LCK 선수가 5명 이상 필요하고, LCK CL 명단을 입력했다면 5명 이상이어야 합니다.`)
     }
 
     const teamDocument = `${seasonDocument}/teams/${team.id}`
