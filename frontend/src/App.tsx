@@ -168,6 +168,10 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
     }
   }, [season, team.id])
 
+  const staff = season === rosterData.season
+    ? rosterData.teams.find((rosterTeam) => rosterTeam.id === team.id)?.staff ?? []
+    : []
+
   return (
     <section className="roster-section" style={{ '--team-accent': team.accent } as CSSProperties}>
       <div className="roster-watermark" aria-hidden="true">{team.shortName}</div>
@@ -244,6 +248,26 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
                 </div>
               </section>
             })}
+            {staff.length > 0 && <section className="staff-section" aria-label="감독과 코치">
+              <div className="roster-squad-heading">
+                <h2>감독 &amp; 코칭 스태프</h2>
+                <span>TEAM STAFF</span>
+              </div>
+              {['LCK', 'LCK CL'].map((league) => {
+                const leagueStaff = staff.filter((member) => member.league === league)
+                if (leagueStaff.length === 0) return null
+
+                return <div className="staff-group" key={league}>
+                  <h3>{league === 'LCK' ? 'LCK 1군' : 'LCK CHALLENGERS'}</h3>
+                  <div className="staff-grid">
+                    {leagueStaff.map((member) => <article className="staff-card" key={`${league}-${member.role}-${member.name}`}>
+                      <span>{member.role}</span>
+                      <strong>{member.name}</strong>
+                    </article>)}
+                  </div>
+                </div>
+              })}
+            </section>}
             <p className="roster-footnote">선수 명단은 {season} LCK CUP 통합 로스터 기준입니다.</p>
           </>
         )}

@@ -20,6 +20,13 @@
         { "role": "MID", "label": "미드", "name": "Guti", "koreanName": "", "league": "LCK CL" },
         { "role": "BOT", "label": "바텀", "name": "Cypher", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "Cloud", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "kkOma" },
+        { "league": "LCK", "role": "코치", "name": "Tom" },
+        { "league": "LCK", "role": "코치", "name": "Mata" },
+        { "league": "LCK CL", "role": "감독", "name": "DooTi" },
+        { "league": "LCK CL", "role": "코치", "name": "Nagne" }
       ]
     },
     {
@@ -41,6 +48,12 @@
         { "role": "BOT", "label": "바텀", "name": "MUDAI", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "SIRIUSS", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "Lumos", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Ryu" },
+        { "league": "LCK", "role": "코치", "name": "Lyn" },
+        { "league": "LCK", "role": "코치", "name": "Nova" },
+        { "league": "LCK CL", "role": "코치", "name": "Jerry" }
       ]
     },
     {
@@ -62,6 +75,12 @@
         { "role": "BOT", "label": "바텀", "name": "Pyeonsik", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "Bluffing", "koreanName": "", "league": "LCK CL" },
         { "role": "MID", "label": "미드", "name": "Valiant", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Homme" },
+        { "league": "LCK", "role": "코치", "name": "Mowgli" },
+        { "league": "LCK", "role": "코치", "name": "Sin" },
+        { "league": "LCK CL", "role": "감독", "name": "Sensation" }
       ]
     },
     {
@@ -83,6 +102,13 @@
         { "role": "MID", "label": "미드", "name": "HwiChan", "koreanName": "", "league": "LCK CL" },
         { "role": "BOT", "label": "바텀", "name": "FenRir", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "Effort", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Score" },
+        { "league": "LCK", "role": "코치", "name": "Museong" },
+        { "league": "LCK", "role": "코치", "name": "S0NSTAR" },
+        { "league": "LCK CL", "role": "감독", "name": "Spark" },
+        { "league": "LCK CL", "role": "코치", "name": "Lilac" }
       ]
     },
     {
@@ -103,6 +129,13 @@
         { "role": "MID", "label": "미드", "name": "Garden", "koreanName": "", "league": "LCK CL" },
         { "role": "BOT", "label": "바텀", "name": "Wayne", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "Loopy", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "cvMax" },
+        { "league": "LCK", "role": "코치", "name": "PoohManDu" },
+        { "league": "LCK", "role": "코치", "name": "Hachani" },
+        { "league": "LCK CL", "role": "감독", "name": "Nevid Woong" },
+        { "league": "LCK CL", "role": "코치", "name": "Sungmin" }
       ]
     },
     {
@@ -124,6 +157,12 @@
         { "role": "BOT", "label": "바텀", "name": "Slayer", "koreanName": "김진영", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "Kellin", "koreanName": "김형규" },
         { "role": "SUPPORT", "label": "서포터", "name": "Luon", "koreanName": "이현호", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Edo" },
+        { "league": "LCK", "role": "코치", "name": "Rather" },
+        { "league": "LCK", "role": "코치", "name": "LirA" },
+        { "league": "LCK CL", "role": "코치", "name": "Dopil" }
       ]
     },
     {
@@ -145,6 +184,13 @@
         { "role": "MID", "label": "미드", "name": "AKaJe", "koreanName": "", "league": "LCK CL" },
         { "role": "BOT", "label": "바텀", "name": "LazyFeel", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "Minous", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Joker" },
+        { "league": "LCK", "role": "코치", "name": "NaeHyun" },
+        { "league": "LCK", "role": "분석", "name": "Saroo" },
+        { "league": "LCK CL", "role": "감독", "name": "Frozen" },
+        { "league": "LCK CL", "role": "코치", "name": "Catch" }
       ]
     },
     {
@@ -166,6 +212,12 @@
         { "role": "MID", "label": "미드", "name": "SeTab", "koreanName": "", "league": "LCK CL" },
         { "role": "BOT", "label": "바텀", "name": "Lucy", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "Pleata", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "DanDy" },
+        { "league": "LCK", "role": "코치", "name": "Chelly" },
+        { "league": "LCK", "role": "코치", "name": "Crazy" },
+        { "league": "LCK CL", "role": "코치", "name": "bonO" }
       ]
     },
     {
@@ -187,6 +239,11 @@
         { "role": "MID", "label": "미드", "name": "Tempester", "koreanName": "오영웅", "league": "LCK CL" },
         { "role": "BOT", "label": "바텀", "name": "OddEye", "koreanName": "조형진", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "PlanB", "koreanName": "홍준석", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Ssong" },
+        { "league": "LCK", "role": "코치", "name": "Duke" },
+        { "league": "LCK CL", "role": "코치", "name": "Cheoni" }
       ]
     },
     {
@@ -208,6 +265,14 @@
         { "role": "MID", "label": "미드", "name": "Flip", "koreanName": "", "league": "LCK CL" },
         { "role": "BOT", "label": "바텀", "name": "Enosh", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "Quantum", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "oDin" },
+        { "league": "LCK", "role": "수석 코치", "name": "Ggoong" },
+        { "league": "LCK", "role": "코치", "name": "Minit" },
+        { "league": "LCK", "role": "분석", "name": "Millimas" },
+        { "league": "LCK CL", "role": "감독", "name": "RapidStar" },
+        { "league": "LCK CL", "role": "코치", "name": "Cube" }
       ]
     }
   ]

@@ -126,6 +126,22 @@ for (const fileName of rosterFiles) {
         },
       })
     })
+
+    const staff = Array.isArray(team.staff) ? team.staff : []
+    staff.forEach((member) => {
+      const league = member.league ?? 'LCK'
+      const staffId = slug(`${league}-${member.role}-${member.name}`)
+      writes.push({
+        update: {
+          name: `${teamDocument}/staff/${staffId}`,
+          fields: {
+            league: firestoreValue(league),
+            role: firestoreValue(member.role),
+            name: firestoreValue(member.name),
+          },
+        },
+      })
+    })
   }
 }
 
