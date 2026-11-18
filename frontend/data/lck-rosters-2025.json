@@ -169,6 +169,7 @@
       "mark": "D",
       "accent": "#5b9dff",
       "motto": "Unbreakables",
+      "logo": "/teams/2025drx.png",
       "players": [
         { "role": "TOP", "label": "탑", "name": "Rich", "koreanName": "이재원" },
         { "role": "JUNGLE", "label": "정글", "name": "Sponge", "koreanName": "배영준" },
@@ -223,6 +224,7 @@
       "mark": "B",
       "accent": "#70bd56",
       "motto": "DeliverTheMoment",
+      "logo": "/teams/OKSavingsBank-BRION.png",
       "players": [
         { "role": "TOP", "label": "탑", "name": "Morgan", "koreanName": "박루한" },
         { "role": "JUNGLE", "label": "정글", "name": "HamBak", "koreanName": "함유진" },
@@ -249,6 +251,7 @@
       "mark": "DN",
       "accent": "#0C50F1",
       "motto": "STAY SHARP",
+      "logo": "/teams/2025dns.png",
       "players": [
         { "role": "TOP", "label": "탑", "name": "DuDu", "koreanName": "이동주" },
         { "role": "JUNGLE", "label": "정글", "name": "Pyosik", "koreanName": "홍창현" },

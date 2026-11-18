@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 const scriptDirectory = dirname(fileURLToPath(import.meta.url))
 const frontendDirectory = resolve(scriptDirectory, '..')
 const dataDirectory = resolve(frontendDirectory, 'data')
-const firebaseConfigPath = resolve(frontendDirectory, '.firebaserc')
+const firebaseConfigPath = resolve(frontendDirectory, '..', '.firebaserc')
 
 function getAccessToken() {
   try {
@@ -95,6 +95,7 @@ for (const fileName of rosterFiles) {
           mark: firestoreValue(team.mark ?? team.shortName ?? team.name.slice(0, 1)),
           accent: firestoreValue(team.accent ?? '#e84048'),
           motto: firestoreValue(team.motto ?? ''),
+          logo: firestoreValue(team.logo ?? `/teams/${team.id}.png`),
         },
       },
     })

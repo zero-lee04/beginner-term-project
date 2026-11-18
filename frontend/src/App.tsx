@@ -12,6 +12,7 @@ type Team = {
   mark: string
   accent: string
   motto: string
+  logo?: string
 }
 
 const teams: Team[] = [
@@ -186,7 +187,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
         <div className="roster-heading">
           <div className="roster-logo" aria-hidden="true">
             <img
-              src={`/teams/${team.id}.png`}
+              src={team.logo ?? `/teams/${team.id}.png`}
               alt=""
               onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-logo')}
               onError={(event) => event.currentTarget.remove()}
@@ -318,6 +319,12 @@ function App() {
     let isActive = true
 
     async function loadSeasonTeams() {
+      const localTeams = getSeasonRosterData(selectedSeason)?.teams
+      if (localTeams) {
+        if (isActive) setSeasonTeams(localTeams)
+        return
+      }
+
       try {
         const snapshot = await getDocs(collection(db, 'seasons', String(selectedSeason), 'teams'))
         const loadedTeams = snapshot.docs.map((teamDocument) => {
@@ -331,14 +338,13 @@ function App() {
             mark: String(data.mark ?? fallbackTeam?.mark ?? teamDocument.id.slice(0, 1).toUpperCase()),
             accent: String(data.accent ?? fallbackTeam?.accent ?? '#e84048'),
             motto: String(data.motto ?? fallbackTeam?.motto ?? ''),
+            logo: String(data.logo ?? (fallbackTeam && 'logo' in fallbackTeam ? fallbackTeam.logo : undefined) ?? '') || undefined,
           }
         })
 
-        const localTeams = getSeasonRosterData(selectedSeason)?.teams
-        if (isActive) setSeasonTeams(loadedTeams.length > 0 ? loadedTeams : (localTeams ?? []))
+        if (isActive) setSeasonTeams(loadedTeams)
       } catch {
-        const localTeams = getSeasonRosterData(selectedSeason)?.teams
-        if (isActive) setSeasonTeams(localTeams ?? [])
+        if (isActive) setSeasonTeams([])
       }
     }
 
@@ -422,7 +428,7 @@ function App() {
               <span className="card-topline"><span>{String(index + 1).padStart(2, '0')}</span><span className="card-arrow">↗</span></span>
               <span className={`team-emblem emblem-${team.id}`} aria-hidden="true">
                 <img
-                  src={`/teams/${team.id}.png`}
+                  src={team.logo ?? `/teams/${team.id}.png`}
                   alt=""
                   onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-logo')}
                   onError={(event) => event.currentTarget.remove()}
