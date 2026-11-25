@@ -1041,6 +1041,25 @@
   gap: 12px;
 }
 
+.roster-squad-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 14px;
+}
+
+.roster-squad-heading h2 {
+  margin: 0;
+  color: #f4f0e8;
+  font-size: 20px;
+}
+
+.roster-squad-heading > span {
+  color: #85818a;
+  font-size: 10px;
+}
+
 .player-card {
   position: relative;
   min-width: 0;
@@ -1051,8 +1070,20 @@
   padding: 17px;
   border: 1px solid #39343a;
   background: linear-gradient(155deg, #1c1a1d 0%, #111216 75%);
+  cursor: pointer;
   animation: rise-in .45s both;
   animation-delay: calc(var(--player-index) * 75ms);
+}
+
+.player-card:hover,
+.player-card:focus-visible {
+  border-color: color-mix(in srgb, var(--team-accent) 70%, #39343a);
+  outline: none;
+  transform: translateY(-3px);
+}
+
+.player-card:focus-visible {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--team-accent) 55%, transparent);
 }
 
 .player-card::before {
@@ -1218,6 +1249,155 @@
 .roster-state-error {
   border-color: #71333a;
   color: #f1b1b5;
+}
+
+.career-overlay {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: #050609d9;
+  backdrop-filter: blur(8px);
+}
+
+.career-dialog {
+  position: relative;
+  width: min(100%, 560px);
+  max-height: min(82vh, 720px);
+  overflow-y: auto;
+  padding: clamp(24px, 5vw, 42px);
+  border: 1px solid #3b363e;
+  background: radial-gradient(ellipse at 100% 0%, #28191d, #141318 52%, #101115);
+  box-shadow: 0 24px 90px #000a;
+}
+
+.career-close {
+  position: absolute;
+  top: 14px;
+  right: 17px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #454047;
+  background: #1b191e;
+  color: #eee9e8;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.career-kicker {
+  margin: 0 0 8px;
+  color: #f04452;
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .16em;
+}
+
+.career-dialog > h2 {
+  margin: 0;
+  color: #f4f0e8;
+  font: 800 clamp(32px, 7vw, 48px)/1 'Barlow Condensed', sans-serif;
+}
+
+.career-dialog > h2 span {
+  color: #f04452;
+}
+
+.career-real-name {
+  margin: 8px 0 0;
+  color: #99939b;
+  font-size: 12px;
+}
+
+.career-list {
+  display: grid;
+  gap: 0;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.career-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 13px 54px 38px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  color: #f4f0e8;
+}
+
+.career-marker {
+  z-index: 1;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--career-accent);
+  border-radius: 50%;
+  background: #121116;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--career-accent) 45%, transparent);
+}
+
+.career-year {
+  color: #f04452;
+  font: 700 15px 'DM Mono', monospace;
+}
+
+.career-team-logo {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+}
+
+.career-team-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.career-entry-info {
+  display: grid;
+  gap: 4px;
+}
+
+.career-entry-info strong {
+  font-size: 14px;
+}
+
+.career-entry-info > span {
+  color: #98939b;
+  font-size: 10px;
+}
+
+.career-projection {
+  padding: 4px 7px;
+  border: 1px solid #735333;
+  color: #e5bd78;
+  font-size: 9px;
+}
+
+.career-connector {
+  position: absolute;
+  top: 42px;
+  bottom: -1px;
+  left: 4px;
+  width: 1px;
+  background: linear-gradient(#51464c, #51464c66);
+}
+
+.career-empty {
+  margin: 28px 0 0;
+  padding: 18px;
+  border: 1px solid #39343a;
+  color: #b7b0b8;
+  font-size: 12px;
+}
+
+.career-note {
+  margin: 22px 0 0;
+  color: #79747d;
+  font-size: 10px;
+  line-height: 1.7;
 }
 
 .stove-section {

@@ -47,6 +47,111 @@ type StaffMember = {
   name: string
 }
 
+type CareerEntry = {
+  season: number
+  teamId: string
+  teamName: string
+  teamShortName: string
+  accent: string
+  league: string
+  role: string
+  label: string
+}
+
+type CareerPlayer = Pick<RosterPlayer, 'name' | 'koreanName'>
+
+function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
+  const normalizedName = player.name.trim().toLowerCase()
+  const normalizedKoreanName = player.koreanName.trim()
+  const seasons = [rosterData2025, rosterData, rosterData2027]
+  const career: CareerEntry[] = []
+
+  for (const seasonData of seasons) {
+    for (const team of seasonData.teams) {
+      const matchingPlayers = team.players.filter((candidate) => {
+        if (candidate.name.trim().toLowerCase() === 'free agent') return false
+        return candidate.name.trim().toLowerCase() === normalizedName
+          || Boolean(normalizedKoreanName && candidate.koreanName.trim() === normalizedKoreanName)
+      })
+      const uniquePlayers = new Map<string, (typeof matchingPlayers)[number]>()
+
+      for (const candidate of matchingPlayers) {
+        const league = candidate.league ?? 'LCK'
+        const key = `${league}-${candidate.role}`
+        const existing = uniquePlayers.get(key)
+        if (!existing || (existing.league ?? 'LCK CL') !== 'LCK') uniquePlayers.set(key, candidate)
+      }
+
+      for (const candidate of uniquePlayers.values()) {
+        career.push({
+          season: seasonData.season,
+          teamId: team.id,
+          teamName: team.name,
+          teamShortName: team.shortName,
+          accent: team.accent,
+          league: candidate.league ?? 'LCK',
+          role: candidate.label,
+          label: candidate.role,
+        })
+      }
+    }
+  }
+
+  return career.sort((first, second) => first.season - second.season || first.teamName.localeCompare(second.teamName))
+}
+
+function CareerTimeline({ player, onClose }: { player: CareerPlayer; onClose: () => void }) {
+  const career = getPlayerCareer(player)
+
+  useEffect(() => {
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape') onClose()
+    }
+
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [onClose])
+
+  return (
+    <div className="career-overlay" onClick={onClose}>
+      <section
+        className="career-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="career-title"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <button className="career-close" type="button" onClick={onClose} aria-label="타임라인 닫기">×</button>
+        <p className="career-kicker">PLAYER JOURNEY</p>
+        <h2 id="career-title">{player.name}<span> CAREER</span></h2>
+        {player.koreanName && <p className="career-real-name">{player.koreanName}</p>}
+        {career.length > 0 ? (
+          <ol className="career-list">
+            {career.map((entry, index) => (
+              <li className="career-entry" key={`${entry.season}-${entry.teamId}-${entry.league}-${entry.label}`}>
+                <span className="career-marker" style={{ '--career-accent': entry.accent } as CSSProperties} />
+                <span className="career-year">{entry.season}</span>
+                <span className="career-team-logo">
+                  <img src={`${import.meta.env.BASE_URL}teams/${entry.teamId}.png`} alt="" />
+                </span>
+                <span className="career-entry-info">
+                  <strong>{entry.teamShortName}</strong>
+                  <span>{entry.league === 'LCK CL' ? 'LCK 챌린저스' : 'LCK'} · {entry.role}</span>
+                </span>
+                {entry.season === 2027 && <span className="career-projection">전망</span>}
+                {index < career.length - 1 && <span className="career-connector" aria-hidden="true" />}
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p className="career-empty">등록된 시즌별 이력이 아직 없습니다.</p>
+        )}
+        <p className="career-note">등록된 시즌 로스터 기준이며, 2027 표시는 전망 로스터입니다.</p>
+      </section>
+    </div>
+  )
+}
+
 function getLocalRoster(season: number, teamId: string): RosterPlayer[] {
   const team = getSeasonRosterData(season)?.teams.find((rosterTeam) => rosterTeam.id === teamId)
   return (team?.players ?? []).map((player, index) => ({
@@ -138,6 +243,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
   const [players, setPlayers] = useState<RosterPlayer[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [careerPlayer, setCareerPlayer] = useState<CareerPlayer | null>(null)
 
   useEffect(() => {
     let isActive = true
@@ -235,6 +341,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
               return <section className="roster-squad" key={league}>
                 <div className="roster-squad-heading">
                   <h2>{league === 'LCK' ? 'LCK' : 'LCK CHALLENGERS'}</h2>
+                  <span>선수 카드를 눌러 커리어 타임라인 보기</span>
                 </div>
                 <div className="roster-grid">
                   {squadPlayers.map((player, index) => {
@@ -243,6 +350,16 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
 
                     return <article
                       className="player-card"
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`${player.name} 선수 커리어 타임라인 보기`}
+                      onClick={() => setCareerPlayer(player)}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault()
+                          setCareerPlayer(player)
+                        }
+                      }}
                       key={player.id}
                       style={{
                         '--player-index': index,
@@ -292,6 +409,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
           </>
         )}
       </div>
+      {careerPlayer && <CareerTimeline player={careerPlayer} onClose={() => setCareerPlayer(null)} />}
     </section>
   )
 }
