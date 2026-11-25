@@ -505,6 +505,7 @@ function App() {
             <a className="nav-active" href="#teams">TEAMS</a>
             <a href="#teams">LEAGUE</a>
             <a href="#teams">COMMUNITY</a>
+            <a href="#stove-league">STOVE LEAGUE</a>
           </nav>
         )}
         {showLogin ? (
@@ -587,6 +588,8 @@ function App() {
           {selectedTeam && <span className="selection-message">{selectedTeam.motto} <span>✦</span></span>}
         </div>
       </section>
+
+      <StoveLeague />
 
       <footer className="site-footer">
         <span>LOOP IN. LOCK IN. LCK.</span>
