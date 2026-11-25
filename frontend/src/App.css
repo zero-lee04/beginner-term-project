@@ -1128,6 +1128,72 @@
   background: linear-gradient(90deg, color-mix(in srgb, var(--team-accent) 67%, transparent), transparent);
 }
 
+.staff-section {
+  margin-top: 38px;
+  padding-top: 24px;
+  border-top: 1px solid #39343a;
+}
+
+.staff-section > .roster-squad-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.staff-section > .roster-squad-heading h2 {
+  margin: 0;
+  color: #f4f0e8;
+  font-size: 22px;
+}
+
+.staff-section > .roster-squad-heading span {
+  color: #85818a;
+  font: 9px 'DM Mono', monospace;
+  letter-spacing: .12em;
+}
+
+.staff-group + .staff-group {
+  margin-top: 25px;
+}
+
+.staff-group h3 {
+  margin: 0 0 11px;
+  color: #d2cdd2;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.staff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+  gap: 9px;
+}
+
+.staff-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 10px 13px;
+  border: 1px solid #343137;
+  background: #171519;
+}
+
+.staff-card span {
+  min-width: 38px;
+  color: #f04452;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.staff-card strong {
+  color: #f2eef0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 .roster-footnote {
   margin: 18px 0 0;
   color: #716f76;
@@ -1418,6 +1484,24 @@
     grid-template-columns: repeat(5, minmax(112px, 1fr));
     overflow-x: auto;
     gap: 8px;
+  }
+
+  .staff-section {
+    margin-top: 30px;
+    padding-top: 20px;
+  }
+
+  .staff-section > .roster-squad-heading {
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .staff-section > .roster-squad-heading h2 {
+    font-size: 19px;
+  }
+
+  .staff-grid {
+    grid-template-columns: 1fr;
   }
 
   .player-card {

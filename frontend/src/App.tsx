@@ -218,8 +218,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
 
               return <section className="roster-squad" key={league}>
                 <div className="roster-squad-heading">
-                  <h2>{league === 'LCK' ? 'LCK 1군' : 'LCK CHALLENGERS'}</h2>
-                  <span>{String(squadPlayers.length).padStart(2, '0')} PLAYERS</span>
+                  <h2>{league === 'LCK' ? 'LCK' : 'LCK CHALLENGERS'}</h2>
                 </div>
                 <div className="roster-grid">
                   {squadPlayers.map((player, index) => {
@@ -263,7 +262,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
                 if (leagueStaff.length === 0) return null
 
                 return <div className="staff-group" key={league}>
-                  <h3>{league === 'LCK' ? 'LCK 1군' : 'LCK CHALLENGERS'}</h3>
+                  <h3>{league === 'LCK' ? 'LCK' : 'LCK CHALLENGERS'}</h3>
                   <div className="staff-grid">
                     {leagueStaff.map((member) => <article className="staff-card" key={`${league}-${member.role}-${member.name}`}>
                       <span>{member.role}</span>
