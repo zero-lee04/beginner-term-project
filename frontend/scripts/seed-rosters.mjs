@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 const scriptDirectory = dirname(fileURLToPath(import.meta.url))
 const frontendDirectory = resolve(scriptDirectory, '..')
 const dataDirectory = resolve(frontendDirectory, 'data')
-const firebaseConfigPath = resolve(frontendDirectory, '.firebaserc')
+const firebaseConfigPath = resolve(frontendDirectory, '..', '.firebaserc')
 
 function getAccessToken() {
   try {
@@ -98,26 +98,28 @@ for (const fileName of archiveFiles) {
       },
     })
 
-    for (const oldPlayerId of ['top', 'jungle', 'mid', 'bot', 'support']) {
-      writes.push({ delete: `${teamDocument}/players/${oldPlayerId}` })
-    }
+    if (kind === 'season') {
+      for (const oldPlayerId of ['top', 'jungle', 'mid', 'bot', 'support']) {
+        writes.push({ delete: `${teamDocument}/players/${oldPlayerId}` })
+      }
 
-    team.players.forEach((player, index) => {
-      const playerId = `${player.role.toLowerCase()}-${String(index + 1).padStart(2, '0')}`
-      writes.push({
-        update: {
-          name: `${teamDocument}/players/${playerId}`,
-          fields: {
-            role: firestoreValue(player.role),
-            label: firestoreValue(player.label),
-            name: firestoreValue(player.name),
-            koreanName: firestoreValue(player.koreanName),
-            number: firestoreValue(String(index + 1).padStart(2, '0')),
-            sortOrder: firestoreValue(index + 1),
+      team.players.forEach((player, index) => {
+        const playerId = `${player.role.toLowerCase()}-${String(index + 1).padStart(2, '0')}`
+        writes.push({
+          update: {
+            name: `${teamDocument}/players/${playerId}`,
+            fields: {
+              role: firestoreValue(player.role),
+              label: firestoreValue(player.label),
+              name: firestoreValue(player.name),
+              koreanName: firestoreValue(player.koreanName),
+              number: firestoreValue(String(index + 1).padStart(2, '0')),
+              sortOrder: firestoreValue(index + 1),
+            },
           },
-        },
+        })
       })
-    })
+    }
   }
 
   if (kind === 'offseason') {
@@ -132,9 +134,11 @@ for (const fileName of archiveFiles) {
 
       const transferId = String(transfer.id ?? `move-${String(index + 1).padStart(3, '0')}`)
       const transferDocument = `${archiveDocument}/transfers/${transferId}`
-      const division = String(transfer.division ?? '1군')
-      if (!['1군', '챌린저스'].includes(division)) {
-        throw new Error(`${year} 스토브리그 ${transfer.player}의 division은 1군 또는 챌린저스여야 합니다.`)
+      const teamNames = `${transfer.originalTeam ?? ''} ${transfer.contractTeam ?? ''}`
+      const inferredDivision = /챌린저스|유스|아카데미|Academy|Challengers/i.test(teamNames) ? 'LCK CL' : 'LCK'
+      const division = String(transfer.division ?? inferredDivision)
+      if (!['LCK', 'LCK CL'].includes(division)) {
+        throw new Error(`${year} 스토브리그 ${transfer.player}의 division은 LCK 또는 LCK CL이어야 합니다.`)
       }
       writes.push({
         update: {
@@ -146,6 +150,7 @@ for (const fileName of archiveFiles) {
             role: firestoreValue(String(transfer.role ?? '')),
             originalTeam: firestoreValue(String(transfer.originalTeam ?? '')),
             contractTeam: firestoreValue(String(transfer.contractTeam ?? '')),
+            ...(transfer.contractLength ? { contractLength: firestoreValue(String(transfer.contractLength)) } : {}),
             sortOrder: firestoreValue(Number.isInteger(transfer.sortOrder) ? transfer.sortOrder : index + 1),
           },
         },

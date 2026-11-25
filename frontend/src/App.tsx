@@ -1,6 +1,7 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from './firebase'
+import offseason2027 from '../data/lck-offseason-2027.json'
 import rosterData from '../data/lck-rosters-2026.json'
 import rosterData2025 from '../data/lck-rosters-2025.json'
 import './App.css'
@@ -292,13 +293,21 @@ type TransferMove = {
 
 const transferFilters = ['전체', '재계약', '이적', '계약 종료'] as const
 const transferDivisions = ['LCK', 'LCK CL'] as const
+const bundledMoves: TransferMove[] = offseason2027.transfers.map((move, index) => ({
+  id: `move-${String(index + 1).padStart(3, '0')}`,
+  division: /챌린저스|유스|아카데미|Academy|Challengers/i.test(`${move.originalTeam} ${move.contractTeam}`) ? 'LCK CL' : 'LCK',
+  status: move.status,
+  player: move.player,
+  role: move.role,
+  originalTeam: move.originalTeam,
+  contractTeam: move.contractTeam,
+}))
 
 function StoveLeague() {
-  const [moves, setMoves] = useState<TransferMove[]>([])
+  const [moves, setMoves] = useState<TransferMove[]>(bundledMoves)
   const [division, setDivision] = useState<(typeof transferDivisions)[number]>('LCK')
   const [filter, setFilter] = useState<(typeof transferFilters)[number]>('전체')
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
 
 
 useEffect(() => {
@@ -324,9 +333,9 @@ useEffect(() => {
           }
         })
 
-        if (isActive) setMoves(loadedMoves)
+        if (isActive && loadedMoves.length > 0) setMoves(loadedMoves)
       } catch {
-        if (isActive) setError('Failed to load transfer moves.')
+        // Keep the bundled snapshot visible when Firestore is not seeded or reachable.
       } finally {
         if (isActive) setLoading(false)
       }
@@ -393,8 +402,6 @@ useEffect(() => {
             <tbody>
               {loading ? (
                 <tr><td className="transfer-empty" colSpan={4}>스토브리그 현황을 불러오는 중...</td></tr>
-              ) : error ? (
-                <tr><td className="transfer-empty transfer-error" colSpan={4}>{error}</td></tr>
               ) : visibleMoves.length === 0 ? (
                 <tr><td className="transfer-empty" colSpan={4}>아직 등록된 이적·재계약 소식이 없습니다.</td></tr>
               ) : visibleMoves.map((move) => (
