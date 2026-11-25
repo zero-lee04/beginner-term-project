@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url'
 const scriptDirectory = dirname(fileURLToPath(import.meta.url))
 const frontendDirectory = resolve(scriptDirectory, '..')
 const dataDirectory = resolve(frontendDirectory, 'data')
-const firebaseConfigPath = resolve(frontendDirectory, '..', '.firebaserc')
+const firebaseConfigPath = resolve(frontendDirectory, '.firebaserc')
 
 function getAccessToken() {
   try {
@@ -33,17 +33,6 @@ function firestoreValue(value) {
   throw new TypeError(`지원하지 않는 Firestore 값입니다: ${String(value)}`)
 }
 
-function normalizeRole(role) {
-  const normalizedRole = String(role).toUpperCase()
-  if (normalizedRole === 'JUG') return 'JUNGLE'
-  if (normalizedRole === 'SUP') return 'SUPPORT'
-  return normalizedRole
-}
-
-function slug(value) {
-  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
-
 const [dataFiles, firebaseConfig] = await Promise.all([
   readdir(dataDirectory),
   readFile(firebaseConfigPath, 'utf8').then(JSON.parse),
@@ -51,41 +40,51 @@ const [dataFiles, firebaseConfig] = await Promise.all([
 
 const projectId = firebaseConfig.projects?.default
 if (!projectId) throw new Error('.firebaserc에서 기본 Firebase 프로젝트를 찾지 못했습니다.')
-const rosterFiles = dataFiles.filter((fileName) => /^lck-rosters-\d{4}\.json$/.test(fileName))
-if (rosterFiles.length === 0) throw new Error('data 폴더에 lck-rosters-YYYY.json 파일이 없습니다.')
+const requestedYear = process.argv[2]
+if (requestedYear && !/^\d{4}$/.test(requestedYear)) throw new Error('연도는 4자리 숫자로 입력하세요. 예: npm run seed:rosters -- 2027')
+const archiveFiles = dataFiles.filter((fileName) => {
+  const archiveMatch = fileName.match(/^lck-(rosters|offseason)-(\d{4})\.json$/)
+  return archiveMatch && (!requestedYear || archiveMatch[2] === requestedYear)
+})
+if (archiveFiles.length === 0) {
+  throw new Error(requestedYear
+    ? `${requestedYear}년 로스터 또는 스토브리그 JSON 파일이 data 폴더에 없습니다.`
+    : 'data 폴더에 lck-rosters-YYYY.json 또는 lck-offseason-YYYY.json 파일이 없습니다.')
+}
 
 const writes = []
-const seededSeasons = []
+const seededArchives = []
 
-for (const fileName of rosterFiles) {
+for (const fileName of archiveFiles) {
   const roster = JSON.parse(await readFile(resolve(dataDirectory, fileName), 'utf8'))
-  const fileSeason = Number(fileName.match(/(\d{4})/)?.[1])
-  const { season, source, teams } = roster
+  const year = Number(fileName.match(/(\d{4})/)?.[1])
+  const kind = fileName.startsWith('lck-offseason-') ? 'offseason' : 'season'
+  const archiveCollection = kind === 'offseason' ? 'offseasons' : 'seasons'
+  const source = roster.source ?? ''
+  const teams = roster.teams
 
-  if (Number(season) !== fileSeason) throw new Error(`${fileName}의 season 값이 파일 이름과 다릅니다.`)
+  if (Number(kind === 'offseason' ? roster.year : roster.season) !== year) throw new Error(`${fileName}의 연도 값이 파일 이름과 다릅니다.`)
   if (!Array.isArray(teams) || teams.length !== 10) throw new Error(`${fileName}에는 팀 10개가 있어야 합니다.`)
-  seededSeasons.push(season)
+  seededArchives.push(`${year} ${kind}`)
 
-  const seasonDocument = `projects/${projectId}/databases/(default)/documents/seasons/${season}`
+  const archiveDocument = `projects/${projectId}/databases/(default)/documents/${archiveCollection}/${year}`
   writes.push({
     update: {
-      name: seasonDocument,
+      name: archiveDocument,
       fields: {
-        year: firestoreValue(season),
+        year: firestoreValue(year),
+        kind: firestoreValue(kind),
         source: firestoreValue(source),
       },
     },
   })
 
   for (const team of teams) {
-    const players = Array.isArray(team.players) ? team.players : []
-    const firstTeamPlayers = players.filter((player) => (player.league ?? 'LCK') === 'LCK').length
-    const challengerPlayers = players.filter((player) => player.league === 'LCK CL').length
-    if (!team.id || !team.name || firstTeamPlayers < 5 || (challengerPlayers > 0 && challengerPlayers < 5)) {
-      throw new Error(`${season} ${team.name ?? '알 수 없는 팀'}에는 LCK 선수가 5명 이상 필요하고, LCK CL 명단을 입력했다면 5명 이상이어야 합니다.`)
+    if (!team.id || !team.name || !Array.isArray(team.players) || (kind === 'season' && team.players.length < 5)) {
+      throw new Error(`${year} ${team.name ?? '알 수 없는 팀'}의 팀 정보 또는 선수 구성이 올바르지 않습니다.`)
     }
 
-    const teamDocument = `${seasonDocument}/teams/${team.id}`
+    const teamDocument = `${archiveDocument}/teams/${team.id}`
     writes.push({
       update: {
         name: teamDocument,
@@ -95,54 +94,63 @@ for (const fileName of rosterFiles) {
           mark: firestoreValue(team.mark ?? team.shortName ?? team.name.slice(0, 1)),
           accent: firestoreValue(team.accent ?? '#e84048'),
           motto: firestoreValue(team.motto ?? ''),
-          logo: firestoreValue(team.logo ?? `/teams/${team.id}.png`),
         },
       },
     })
 
-    const roleCounts = new Map()
-    const leagueCounts = new Map()
-    players.forEach((player) => {
-      const league = player.league ?? 'LCK'
-      const role = normalizeRole(player.role)
-      const roleCount = roleCounts.get(role) ?? 0
-      const leagueIndex = leagueCounts.get(league) ?? 0
-      const playerId = roleCount === 0
-        ? role.toLowerCase()
-        : `${role.toLowerCase()}-${slug(league)}-${slug(player.name)}`
-      roleCounts.set(role, roleCount + 1)
-      leagueCounts.set(league, leagueIndex + 1)
+    for (const oldPlayerId of ['top', 'jungle', 'mid', 'bot', 'support']) {
+      writes.push({ delete: `${teamDocument}/players/${oldPlayerId}` })
+    }
+
+    team.players.forEach((player, index) => {
+      const playerId = `${player.role.toLowerCase()}-${String(index + 1).padStart(2, '0')}`
       writes.push({
         update: {
           name: `${teamDocument}/players/${playerId}`,
           fields: {
-            league: firestoreValue(league),
-            role: firestoreValue(role),
+            role: firestoreValue(player.role),
             label: firestoreValue(player.label),
             name: firestoreValue(player.name),
             koreanName: firestoreValue(player.koreanName),
-            number: firestoreValue(String(leagueIndex + 1).padStart(2, '0')),
-            sortOrder: firestoreValue(writes.length),
+            number: firestoreValue(String(index + 1).padStart(2, '0')),
+            sortOrder: firestoreValue(index + 1),
           },
         },
       })
     })
+  }
 
-    const staff = Array.isArray(team.staff) ? team.staff : []
-    staff.forEach((member) => {
-      const league = member.league ?? 'LCK'
-      const staffId = slug(`${league}-${member.role}-${member.name}`)
+  if (kind === 'offseason') {
+    if (!Array.isArray(roster.transfers ?? [])) {
+      throw new Error(`${fileName}의 transfers는 배열이어야 합니다.`)
+    }
+
+    for (const [index, transfer] of (roster.transfers ?? []).entries()) {
+      if (!transfer.status || !transfer.player) {
+        throw new Error(`${year} 스토브리그 ${index + 1}번째 항목에 status와 player가 필요합니다.`)
+      }
+
+      const transferId = String(transfer.id ?? `move-${String(index + 1).padStart(3, '0')}`)
+      const transferDocument = `${archiveDocument}/transfers/${transferId}`
+      const division = String(transfer.division ?? '1군')
+      if (!['1군', '챌린저스'].includes(division)) {
+        throw new Error(`${year} 스토브리그 ${transfer.player}의 division은 1군 또는 챌린저스여야 합니다.`)
+      }
       writes.push({
         update: {
-          name: `${teamDocument}/staff/${staffId}`,
+          name: transferDocument,
           fields: {
-            league: firestoreValue(league),
-            role: firestoreValue(member.role),
-            name: firestoreValue(member.name),
+            division: firestoreValue(division),
+            status: firestoreValue(String(transfer.status)),
+            player: firestoreValue(String(transfer.player)),
+            role: firestoreValue(String(transfer.role ?? '')),
+            originalTeam: firestoreValue(String(transfer.originalTeam ?? '')),
+            contractTeam: firestoreValue(String(transfer.contractTeam ?? '')),
+            sortOrder: firestoreValue(Number.isInteger(transfer.sortOrder) ? transfer.sortOrder : index + 1),
           },
         },
       })
-    })
+    }
   }
 }
 
@@ -164,4 +172,4 @@ for (let offset = 0; offset < writes.length; offset += 400) {
   }
 }
 
-console.log(`${projectId} Firestore에 ${seededSeasons.join(', ')} 시즌 데이터를 등록했습니다 (${writes.length}개 문서).`)
+console.log(`${projectId} Firestore에 ${seededArchives.join(', ')} 데이터를 등록했습니다 (${writes.length}개 문서 작업).`)

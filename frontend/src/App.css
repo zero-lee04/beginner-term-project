@@ -595,7 +595,7 @@
     letter-spacing: .8px;
   }
 
-  .topnav a:nth-child(3) {
+  .topnav a:nth-child(4) {
     display: none;
   }
 
@@ -1041,77 +1041,6 @@
   gap: 12px;
 }
 
-.roster-squad + .roster-squad {
-  margin-top: 40px;
-}
-
-.roster-squad-heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  margin: 0 0 14px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #39343a;
-}
-
-.roster-squad-heading h2 {
-  margin: 0;
-  color: #f4f0e8;
-  font: 700 18px 'Barlow Condensed', sans-serif;
-  letter-spacing: .08em;
-}
-
-.roster-squad-heading span {
-  color: var(--team-accent);
-  font: 9px 'DM Mono', monospace;
-  letter-spacing: .08em;
-}
-
-.staff-section {
-  margin-top: 48px;
-  padding-top: 27px;
-  border-top: 1px solid #39343a;
-}
-
-.staff-group + .staff-group {
-  margin-top: 24px;
-}
-
-.staff-group h3 {
-  margin: 0 0 10px;
-  color: #98949a;
-  font: 10px 'DM Mono', monospace;
-  letter-spacing: .08em;
-}
-
-.staff-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 8px;
-}
-
-.staff-card {
-  min-height: 70px;
-  padding: 13px 15px;
-  border: 1px solid #39343a;
-  background: linear-gradient(145deg, #1a191d, #111216 80%);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.staff-card span {
-  color: var(--team-accent);
-  font-size: 9px;
-}
-
-.staff-card strong {
-  color: #f4f0e8;
-  font: 700 16px 'Barlow Condensed', sans-serif;
-}
-
 .player-card {
   position: relative;
   min-width: 0;
@@ -1225,6 +1154,192 @@
   color: #f1b1b5;
 }
 
+.stove-section {
+  min-height: calc(100vh - 76px);
+  padding: 74px clamp(24px, 7.8vw, 126px) 88px;
+  background: radial-gradient(ellipse at 50% 0%, #21181b 0%, #0b0c10 55%);
+}
+
+.stove-content {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.stove-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.stove-heading .eyebrow {
+  margin: 0 0 9px;
+  color: #ed5662;
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: 2px;
+}
+
+.stove-heading h1 {
+  margin: 0;
+  color: #f4f0e8;
+  font: 800 clamp(42px, 7vw, 76px)/.9 'Barlow Condensed', sans-serif;
+  letter-spacing: .015em;
+}
+
+.stove-heading h1 span {
+  color: #ed3143;
+}
+
+.stove-heading > p {
+  margin: 0 0 3px;
+  color: #a39da0;
+  font-size: 12px;
+}
+
+.transfer-divisions {
+  display: flex;
+  gap: 0;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #373239;
+}
+
+.transfer-divisions button {
+  position: relative;
+  padding: 13px 22px;
+  border: 0;
+  background: transparent;
+  color: #8f8a91;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.transfer-divisions button.transfer-division-active {
+  color: #fff;
+}
+
+.transfer-divisions button.transfer-division-active::after {
+  position: absolute;
+  right: 12px;
+  bottom: -1px;
+  left: 12px;
+  height: 2px;
+  background: #ed3143;
+  content: '';
+}
+
+.transfer-filters {
+  display: flex;
+  gap: 9px;
+  margin-bottom: 22px;
+}
+
+.transfer-filters button {
+  min-width: 80px;
+  padding: 11px 16px;
+  border: 1px solid #353238;
+  background: #141318;
+  color: #aaa6aa;
+  font-size: 11px;
+  cursor: pointer;
+  transition: .18s ease;
+}
+
+.transfer-filters button:hover,
+.transfer-filters button.transfer-filter-active {
+  border-color: #ed3143;
+  background: #ed31431a;
+  color: #fff;
+}
+
+.transfer-table-wrap {
+  overflow-x: auto;
+  border: 1px solid #343137;
+  background: #fff;
+}
+
+.transfer-table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  color: #26242a;
+  text-align: center;
+}
+
+.transfer-table thead {
+  background: #f7f7fa;
+  color: #727990;
+}
+
+.transfer-table th {
+  height: 46px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.transfer-table td {
+  height: 72px;
+  padding: 10px 14px;
+  border-top: 1px solid #e8e8ec;
+  font-size: 13px;
+}
+
+.transfer-table td:nth-child(4) {
+  background: #fafafd;
+}
+
+.transfer-status {
+  display: inline-block;
+  min-width: 54px;
+  padding: 6px 8px;
+  border-radius: 2px;
+  background: #f0efff;
+  color: #645bd5;
+  font-size: 11px;
+}
+
+.status-transfer {
+  background: #fff0eb;
+  color: #d7613c;
+}
+
+.status-ended {
+  background: #f1f1f3;
+  color: #72727a;
+}
+
+.transfer-player {
+  text-align: left;
+}
+
+.transfer-player strong,
+.transfer-player span {
+  display: block;
+}
+
+.transfer-player strong {
+  color: #202027;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.transfer-player span {
+  margin-top: 3px;
+  color: #747989;
+  font-size: 11px;
+}
+
+.transfer-table td.transfer-empty {
+  height: 130px;
+  color: #777b89;
+  font-size: 12px;
+}
+
+.transfer-table td.transfer-error {
+  color: #c24e59;
+}
+
 @media (max-width: 1000px) {
   .roster-grid {
     grid-template-columns: repeat(5, minmax(125px, 1fr));
@@ -1233,6 +1348,35 @@
 }
 
 @media (max-width: 600px) {
+  .stove-section {
+    min-height: calc(100vh - 64px);
+    padding: 48px 18px 58px;
+  }
+
+  .stove-heading {
+    display: block;
+    margin-bottom: 25px;
+  }
+
+  .stove-heading > p {
+    margin-top: 14px;
+  }
+
+  .transfer-filters {
+    gap: 6px;
+    overflow-x: auto;
+  }
+
+  .transfer-divisions button {
+    padding: 12px 18px;
+  }
+
+  .transfer-filters button {
+    min-width: auto;
+    padding: 10px 12px;
+    white-space: nowrap;
+  }
+
   .roster-section {
     min-height: calc(100vh - 64px);
     padding: 30px 18px 45px;
