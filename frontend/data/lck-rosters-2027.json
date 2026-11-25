@@ -1,0 +1,217 @@
+{
+  "season": 2027,
+  "source": "https://lol-stove.ps-esports.kr/lck",
+  "snapshotDate": "2026-11-25",
+  "teams": [
+    {
+      "id": "t1", "name": "T1", "shortName": "T1", "mark": "T1", "accent": "#e84048", "motto": "Limitless: Never Ending Story",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "" },
+        { "role": "JUNGLE", "label": "정글", "name": "Oner", "koreanName": "문현준" },
+        { "role": "MID", "label": "미드", "name": "Faker", "koreanName": "이상혁" },
+        { "role": "BOT", "label": "바텀", "name": "Peyz", "koreanName": "김수환" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Keria", "koreanName": "류민석" },
+        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Roach" },
+        { "league": "LCK", "role": "코치", "name": "Easyhoon" },
+        { "league": "LCK", "role": "코치", "name": "UmTi" },
+        { "league": "LCK CL", "role": "코치", "name": "DooTi" },
+        { "league": "LCK CL", "role": "코치", "name": "Nagne" }
+      ]
+    },
+    {
+      "id": "gen-g", "name": "Gen.G", "shortName": "GEN", "mark": "G", "accent": "#cfaa43", "motto": "CHANGE THE GAME, CHANGE THE WORLD",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Siwoo", "koreanName": "" },
+        { "role": "JUNGLE", "label": "정글", "name": "Sharvel", "koreanName": "" },
+        { "role": "MID", "label": "미드", "name": "Chovy", "koreanName": "정지훈" },
+        { "role": "BOT", "label": "바텀", "name": "Ruler", "koreanName": "박재혁" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Cloud", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Ryu" }
+      ]
+    },
+    {
+      "id": "hle", "name": "Hanwha Life Esports", "shortName": "HLE", "mark": "H", "accent": "#ff702d", "motto": "BeyondTheChallenge",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "" },
+        { "role": "JUNGLE", "label": "정글", "name": "Canyon", "koreanName": "김건부" },
+        { "role": "MID", "label": "미드", "name": "Zeka", "koreanName": "김건우" },
+        { "role": "BOT", "label": "바텀", "name": "Gumayusi", "koreanName": "이민형" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Mowgli" },
+        { "league": "LCK", "role": "코치", "name": "Sin" },
+        { "league": "LCK", "role": "코치", "name": "SONSTAR" },
+        { "league": "LCK", "role": "코치", "name": "LIFE" },
+        { "league": "LCK CL", "role": "코치", "name": "Sensation" }
+      ]
+    },
+    {
+      "id": "kt", "name": "KT Rolster", "shortName": "KT", "mark": "KT", "accent": "#ed2939", "motto": "BreakTheLimits",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "PerfecT", "koreanName": "" },
+        { "role": "JUNGLE", "label": "정글", "name": "Raptor", "koreanName": "" },
+        { "role": "MID", "label": "미드", "name": "Bdd", "koreanName": "곽보성" },
+        { "role": "BOT", "label": "바텀", "name": "Free agent", "koreanName": "" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Kellin", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "Sero", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "Hwichan", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "FenRir", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Score" },
+        { "league": "LCK", "role": "코치", "name": "Museong" },
+        { "league": "LCK", "role": "코치", "name": "Zzus" },
+        { "league": "LCK CL", "role": "코치", "name": "Zero" }
+      ]
+    },
+    {
+      "id": "dk", "name": "Dplus KIA", "shortName": "DK", "mark": "DK", "accent": "#7e9cff", "motto": "ShowMeYourMadness",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Doran", "koreanName": "최현준" },
+        { "role": "JUNGLE", "label": "정글", "name": "Kanavi", "koreanName": "서진혁" },
+        { "role": "MID", "label": "미드", "name": "ShowMaker", "koreanName": "허수" },
+        { "role": "BOT", "label": "바텀", "name": "Smash", "koreanName": "신금재" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Delight", "koreanName": "유환중" },
+        { "role": "TOP", "label": "탑", "name": "Jaehyuk", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "Solid", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "cvMax" },
+        { "league": "LCK", "role": "코치", "name": "Hachani" },
+        { "league": "LCK", "role": "코치", "name": "PoohManDu" },
+        { "league": "LCK CL", "role": "코치", "name": "Sungmin" },
+        { "league": "LCK CL", "role": "코치", "name": "Woong" }
+      ]
+    },
+    {
+      "id": "nongshim", "name": "NS RedForce", "shortName": "NS", "mark": "N", "accent": "#e53d48", "motto": "TheUltimateRed",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Kingen", "koreanName": "황성훈" },
+        { "role": "JUNGLE", "label": "정글", "name": "Pyosik", "koreanName": "홍창현" },
+        { "role": "MID", "label": "미드", "name": "Calix", "koreanName": "" },
+        { "role": "BOT", "label": "바텀", "name": "Deft", "koreanName": "김혁규" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Andil", "koreanName": "문관빈" },
+        { "role": "TOP", "label": "탑", "name": "Janus", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "MihawK", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "Kemish", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "Lucy", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Pollu", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "DanDy" },
+        { "league": "LCK", "role": "코치", "name": "Chelly" },
+        { "league": "LCK", "role": "코치", "name": "bonO" },
+        { "league": "LCK", "role": "코치", "name": "Lyn" }
+      ]
+    },
+    {
+      "id": "bnk", "name": "BNK FEARX", "shortName": "BFX", "mark": "F", "accent": "#ff8a28", "motto": "NoDoubt",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "" },
+        { "role": "JUNGLE", "label": "정글", "name": "Vincenzo", "koreanName": "" },
+        { "role": "MID", "label": "미드", "name": "VicLa", "koreanName": "이대광" },
+        { "role": "BOT", "label": "바텀", "name": "Noah", "koreanName": "" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "Kangin", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "Grizzly", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "MG", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "Slayer", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Rather" },
+        { "league": "LCK", "role": "코치", "name": "Lira" },
+        { "league": "LCK CL", "role": "코치", "name": "Key" }
+      ]
+    },
+    {
+      "id": "dn", "name": "DN SOOPers", "shortName": "DNS", "mark": "DN", "accent": "#0C50F1", "motto": "STAY SHARP",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "DuDu", "koreanName": "이동주" },
+        { "role": "JUNGLE", "label": "정글", "name": "Cuzz", "koreanName": "문우찬" },
+        { "role": "MID", "label": "미드", "name": "Ucal", "koreanName": "손우현" },
+        { "role": "BOT", "label": "바텀", "name": "deokdam", "koreanName": "서대길" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Bluffing", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "Junu", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "Soft", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "Carim", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "Jinbeom", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Ggoong" },
+        { "league": "LCK", "role": "코치", "name": "Minit" },
+        { "league": "LCK", "role": "코치", "name": "Crazy" },
+        { "league": "LCK", "role": "분석", "name": "Millimas" },
+        { "league": "LCK CL", "role": "코치", "name": "Cube" }
+      ]
+    },
+    {
+      "id": "brion", "name": "HANJIN BRION", "shortName": "BRO", "mark": "B", "accent": "#70bd56", "motto": "DeliverTheMoment",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Casting", "koreanName": "" },
+        { "role": "JUNGLE", "label": "정글", "name": "GIDEON", "koreanName": "김민성" },
+        { "role": "MID", "label": "미드", "name": "SeTab", "koreanName": "" },
+        { "role": "BOT", "label": "바텀", "name": "Teddy", "koreanName": "박진성" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Namgung", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "nonnein", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "IDEA", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "Garden", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "OddEye", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "PlanB", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Ssong" },
+        { "league": "LCK", "role": "코치", "name": "OnFleek" },
+        { "league": "LCK", "role": "코치", "name": "Ssumday" },
+        { "league": "LCK", "role": "분석", "name": "Wish" },
+        { "league": "LCK CL", "role": "코치", "name": "Poss" }
+      ]
+    },
+    {
+      "id": "drx", "name": "KIWOOM DRX", "shortName": "DRX", "mark": "D", "accent": "#5b9dff", "motto": "Unbreakables",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "" },
+        { "role": "JUNGLE", "label": "정글", "name": "Free agent", "koreanName": "" },
+        { "role": "MID", "label": "미드", "name": "Free agent", "koreanName": "" },
+        { "role": "BOT", "label": "바텀", "name": "Free agent", "koreanName": "" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "JUNGLE", "label": "정글", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "AKaJe", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "LazyFeel", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "", "league": "LCK CL" }
+      ],
+      "staff": [
+        { "league": "LCK", "role": "감독", "name": "Free agent" },
+        { "league": "LCK", "role": "코치", "name": "Free agent" }
+      ]
+    }
+  ]
+}

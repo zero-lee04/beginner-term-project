@@ -110,6 +110,7 @@ for (const fileName of archiveFiles) {
             name: `${teamDocument}/players/${playerId}`,
             fields: {
               role: firestoreValue(player.role),
+              ...(player.league ? { league: firestoreValue(player.league) } : {}),
               label: firestoreValue(player.label),
               name: firestoreValue(player.name),
               koreanName: firestoreValue(player.koreanName),

@@ -1,6 +1,7 @@
 import { useEffect, useState, type CSSProperties, type FormEvent } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from './firebase'
+import rosterData2027 from '../data/lck-rosters-2027.json'
 import offseason2027 from '../data/lck-offseason-2027.json'
 import rosterData from '../data/lck-rosters-2026.json'
 import rosterData2025 from '../data/lck-rosters-2025.json'
@@ -40,6 +41,12 @@ type RosterPlayer = {
   sortOrder: number
 }
 
+type StaffMember = {
+  league: string
+  role: string
+  name: string
+}
+
 function getLocalRoster(season: number, teamId: string): RosterPlayer[] {
   const team = getSeasonRosterData(season)?.teams.find((rosterTeam) => rosterTeam.id === teamId)
   return (team?.players ?? []).map((player, index) => ({
@@ -55,7 +62,13 @@ function getLocalRoster(season: number, teamId: string): RosterPlayer[] {
 }
 
 function getSeasonRosterData(season: number) {
-  return season === rosterData2025.season ? rosterData2025 : season === rosterData.season ? rosterData : null
+  return season === rosterData2027.season
+    ? rosterData2027
+    : season === rosterData2025.season
+      ? rosterData2025
+      : season === rosterData.season
+        ? rosterData
+        : null
 }
 
 function LoginScreen({ onBack }: { onBack: () => void }) {
@@ -175,7 +188,10 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
     }
   }, [season, team.id])
 
-  const staff = getSeasonRosterData(season)?.teams.find((rosterTeam) => rosterTeam.id === team.id)?.staff ?? []
+  const rosterTeam = getSeasonRosterData(season)?.teams.find((seasonTeam) => seasonTeam.id === team.id)
+  const staff: StaffMember[] = rosterTeam && 'staff' in rosterTeam && Array.isArray(rosterTeam.staff)
+    ? rosterTeam.staff as StaffMember[]
+    : []
 
   return (
     <section className="roster-section" style={{ '--team-accent': team.accent } as CSSProperties}>
@@ -188,7 +204,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
         <div className="roster-heading">
           <div className="roster-logo" aria-hidden="true">
             <img
-              src={team.logo ?? `/teams/${team.id}.png`}
+              src={team.logo ?? `${import.meta.env.BASE_URL}teams/${team.id}.png`}
               alt=""
               onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-logo')}
               onError={(event) => event.currentTarget.remove()}
@@ -272,7 +288,7 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
                 </div>
               })}
             </section>}
-            <p className="roster-footnote">선수 명단은 {season} LCK CUP 통합 로스터 기준입니다.</p>
+            <p className="roster-footnote">선수 명단은 {season} 시즌 로스터 기준입니다.</p>
           </>
         )}
       </div>
@@ -305,25 +321,25 @@ const bundledMoves: TransferMove[] = offseason2027.transfers.map((move, index) =
 function TransferTeamCell({ teamName }: { teamName: string }) {
   const normalizedName = teamName.toLowerCase()
   const logo = normalizedName.includes('t1')
-    ? '/teams/t1.png'
+    ? `${import.meta.env.BASE_URL}teams/t1.png`
     : normalizedName.includes('젠지') || normalizedName.includes('gen.g')
-      ? '/teams/gen-g.png'
+      ? `${import.meta.env.BASE_URL}teams/gen-g.png`
       : normalizedName.includes('한화') || normalizedName.includes('hle')
-        ? '/teams/hle.png'
+        ? `${import.meta.env.BASE_URL}teams/hle.png`
         : normalizedName.includes('kt 롤스터') || normalizedName.includes('kt rolster')
-          ? '/teams/kt.png'
+          ? `${import.meta.env.BASE_URL}teams/kt.png`
           : normalizedName.includes('dplus') || normalizedName.includes('kia')
-            ? '/teams/dk.png'
+            ? `${import.meta.env.BASE_URL}teams/dk.png`
             : normalizedName.includes('bnk') || normalizedName.includes('피어엑스')
-              ? '/teams/bnk.png'
+              ? `${import.meta.env.BASE_URL}teams/bnk.png`
               : normalizedName.includes('drx')
-                ? '/teams/drx.png'
+                ? `${import.meta.env.BASE_URL}teams/drx.png`
                 : normalizedName.includes('농심') || normalizedName.includes('nongshim')
-                  ? '/teams/nongshim.png'
+                  ? `${import.meta.env.BASE_URL}teams/nongshim.png`
                   : normalizedName.includes('브리온') || normalizedName.includes('brion')
-                    ? '/teams/brion.png'
+                    ? `${import.meta.env.BASE_URL}teams/brion.png`
                     : normalizedName.includes('dn 수퍼스') || normalizedName.includes('dn soopers')
-                      ? '/teams/dn.png'
+                      ? `${import.meta.env.BASE_URL}teams/dn.png`
                       : ''
   const displayName = !teamName || teamName === '-' ? '미정' : teamName
 
@@ -460,8 +476,8 @@ useEffect(() => {
 }
 function App() {
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null)
-  const [selectedSeason, setSelectedSeason] = useState(2026)
-  const [availableSeasons, setAvailableSeasons] = useState([2026, 2025])
+  const [selectedSeason, setSelectedSeason] = useState(2027)
+  const [availableSeasons, setAvailableSeasons] = useState([2027, 2026, 2025])
   const [seasonTeams, setSeasonTeams] = useState(teams)
   const [showLogin, setShowLogin] = useState(false)
   const [showRoster, setShowRoster] = useState(false)
@@ -478,7 +494,7 @@ function App() {
           .sort((first, second) => second - first)
 
         if (isActive) {
-          const availableYears = Array.from(new Set([...years, 2025, 2026])).sort((first, second) => second - first)
+          const availableYears = Array.from(new Set([...years, 2025, 2026, 2027])).sort((first, second) => second - first)
           setAvailableSeasons(availableYears)
           setSelectedSeason((currentSeason) => availableYears.includes(currentSeason) ? currentSeason : availableYears[0])
         }
@@ -607,7 +623,7 @@ function App() {
               <span className="card-topline"><span>{String(index + 1).padStart(2, '0')}</span><span className="card-arrow">↗</span></span>
               <span className={`team-emblem emblem-${team.id}`} aria-hidden="true">
                 <img
-                  src={team.logo ?? `/teams/${team.id}.png`}
+                  src={team.logo ?? `${import.meta.env.BASE_URL}teams/${team.id}.png`}
                   alt=""
                   onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-logo')}
                   onError={(event) => event.currentTarget.remove()}
