@@ -280,6 +280,145 @@ function TeamRoster({ team, season, onBack }: { team: Team; season: number; onBa
   )
 }
 
+type TransferMove = {
+  id : string
+  division: string
+  status: string
+  player: string
+  role: string
+  originalTeam: string
+  contractTeam: string
+}
+
+const transferFilters = ['전체', '재계약', '이적', '계약 종료'] as const
+const transferDivisions = ['LCK', 'LCK CL'] as const
+
+function StoveLeague() {
+  const [moves, setMoves] = useState<TransferMove[]>([])
+  const [division, setDivision] = useState<(typeof transferDivisions)[number]>('LCK')
+  const [filter, setFilter] = useState<(typeof transferFilters)[number]>('전체')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+
+useEffect(() => {
+    let isActive = true
+
+    async function loadMoves() {
+      try {
+        const movesQuery = query(
+          collection(db, 'offseasons', '2027', 'transfers'),
+          orderBy('sortOrder'),
+        )
+        const snapshot = await getDocs(movesQuery)
+        const loadedMoves = snapshot.docs.map((moveDocument) => {
+          const data = moveDocument.data()
+          return {
+            id: moveDocument.id,
+            division: String(data.division ?? 'LCK'),
+            status: String(data.status ?? ''),
+            player: String(data.player ?? ''),
+            role: String(data.role ?? ''),
+            originalTeam: String(data.originalTeam ?? ''),
+            contractTeam: String(data.contractTeam ?? ''),
+          }
+        })
+
+        if (isActive) setMoves(loadedMoves)
+      } catch {
+        if (isActive) setError('Failed to load transfer moves.')
+      } finally {
+        if (isActive) setLoading(false)
+      }
+    }
+
+    void loadMoves()
+    return () => {
+      isActive = false
+    }
+  }, [])
+
+  const divisonsMoves = moves.filter((move) => move.division === division)
+  const visibleMoves = filter === '전체' ? divisonsMoves : divisonsMoves.filter((move) => move.status === filter)
+
+  return (
+    <section className="stove-section" id="stove-league">
+      <div className="stove-content">
+        <div className="stove-heading">
+          <div>
+            <p className="eyebrow">LCK 2027 OFFSEASON</p>
+            <h1>STOVE <span>LEAGUE</span></h1>
+          </div>
+          <p>선수 이동과 재계약 소식을 확인해 보세요.</p>
+        </div>
+
+        <div className="transfer-divisions" aria-label="팀 구분">
+          {transferDivisions.map((item) => (
+            <button
+              className={division === item ? 'transfer-division-active' : ''}
+              key={item}
+              type="button"
+              onClick={() => setDivision(item)}
+              aria-pressed={division === item}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+
+        <div className="transfer-filters" aria-label="이적 현황 필터">
+          {transferFilters.map((status) => (
+            <button
+              className={filter === status ? 'transfer-filter-active' : ''}
+              key={status}
+              type="button"
+              onClick={() => setFilter(status)}
+              aria-pressed={filter === status}
+            >
+              {status}
+            </button>
+          ))}
+        </div>
+
+         <div className="transfer-table-wrap">
+          <table className="transfer-table">
+            <thead>
+              <tr>
+                <th scope="col">상황</th>
+                <th scope="col">선수</th>
+                <th scope="col">원소속</th>
+                <th scope="col">계약팀</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr><td className="transfer-empty" colSpan={4}>스토브리그 현황을 불러오는 중...</td></tr>
+              ) : error ? (
+                <tr><td className="transfer-empty transfer-error" colSpan={4}>{error}</td></tr>
+              ) : visibleMoves.length === 0 ? (
+                <tr><td className="transfer-empty" colSpan={4}>아직 등록된 이적·재계약 소식이 없습니다.</td></tr>
+              ) : visibleMoves.map((move) => (
+                <tr key={move.id}>
+                  <td>
+                    <span className={`transfer-status ${move.status === '재계약' ? 'status-renewal' : move.status === '계약 종료' ? 'status-ended' : 'status-transfer'}`}>
+                      {move.status}
+                    </span>
+                  </td>
+                  <td className="transfer-player">
+                    <strong>{move.player}</strong>
+                    {move.role && <span>{move.role}</span>}
+                  </td>
+                  <td>{move.originalTeam || '미정'}</td>
+                  <td>{move.contractTeam || '미정'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  )
+}
 function App() {
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null)
   const [selectedSeason, setSelectedSeason] = useState(2026)

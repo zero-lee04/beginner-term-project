@@ -201,12 +201,12 @@
       "players": [
         { "role": "TOP", "label": "탑", "name": "Kingen", "koreanName": "황성훈" },
         { "role": "JUNGLE", "label": "정글", "name": "GIDEON", "koreanName": "김민성" },
-        { "role": "MID", "label": "미드", "name": "Fisher", "koreanName": "이정태" },
+        { "role": "MID", "label": "미드", "name": "Calix", "koreanName": "선현빈" },
         { "role": "BOT", "label": "바텀", "name": "Jiwoo", "koreanName": "정지우" },
         { "role": "SUPPORT", "label": "서포터", "name": "Lehends", "koreanName": "손시우" },
         { "role": "TOP", "label": "탑", "name": "Kangin", "koreanName": "", "league": "LCK CL" },
         { "role": "JUNGLE", "label": "정글", "name": "Sylvie", "koreanName": "", "league": "LCK CL" },
-        { "role": "MID", "label": "미드", "name": "Calix", "koreanName": "", "league": "LCK CL" },
+        { "role": "MID", "label": "미드", "name": "Fisher", "koreanName": "이정태", "league": "LCK CL" },
         { "role": "BOT", "label": "바텀", "name": "Lucy", "koreanName": "", "league": "LCK CL" },
         { "role": "SUPPORT", "label": "서포터", "name": "vital", "koreanName": "", "league": "LCK CL" }
       ],
