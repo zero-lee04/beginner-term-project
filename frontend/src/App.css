@@ -1255,21 +1255,21 @@
 
 .transfer-table-wrap {
   overflow-x: auto;
-  border: 1px solid #343137;
-  background: #fff;
+  border: 1px solid #343743;
+  background: #111217;
 }
 
 .transfer-table {
   width: 100%;
   min-width: 620px;
   border-collapse: collapse;
-  color: #26242a;
+  color: #f2f3f6;
   text-align: center;
 }
 
 .transfer-table thead {
-  background: #f7f7fa;
-  color: #727990;
+  background: #1d1f26;
+  color: #c4c8d2;
 }
 
 .transfer-table th {
@@ -1281,12 +1281,30 @@
 .transfer-table td {
   height: 72px;
   padding: 10px 14px;
-  border-top: 1px solid #e8e8ec;
+  border-top: 1px solid #30333d;
   font-size: 13px;
 }
 
 .transfer-table td:nth-child(4) {
-  background: #fafafd;
+  background: #171920;
+}
+
+.transfer-team-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 34px;
+}
+
+.transfer-team-cell img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.transfer-team-cell > span {
+  text-align: left;
 }
 
 .transfer-status {
@@ -1319,20 +1337,20 @@
 }
 
 .transfer-player strong {
-  color: #202027;
+  color: #f5f5f7;
   font-size: 14px;
   font-weight: 600;
 }
 
 .transfer-player span {
   margin-top: 3px;
-  color: #747989;
+  color: #a6abba;
   font-size: 11px;
 }
 
 .transfer-table td.transfer-empty {
   height: 130px;
-  color: #777b89;
+  color: #a6abba;
   font-size: 12px;
 }
 

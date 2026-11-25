@@ -303,6 +303,39 @@ const bundledMoves: TransferMove[] = offseason2027.transfers.map((move, index) =
   contractTeam: move.contractTeam,
 }))
 
+function TransferTeamCell({ teamName }: { teamName: string }) {
+  const normalizedName = teamName.toLowerCase()
+  const logo = normalizedName.includes('t1')
+    ? '/teams/t1.png'
+    : normalizedName.includes('젠지') || normalizedName.includes('gen.g')
+      ? '/teams/gen-g.png'
+      : normalizedName.includes('한화') || normalizedName.includes('hle')
+        ? '/teams/hle.png'
+        : normalizedName.includes('kt 롤스터') || normalizedName.includes('kt rolster')
+          ? '/teams/kt.png'
+          : normalizedName.includes('dplus') || normalizedName.includes('kia')
+            ? '/teams/dk.png'
+            : normalizedName.includes('bnk') || normalizedName.includes('피어엑스')
+              ? '/teams/bnk.png'
+              : normalizedName.includes('drx')
+                ? '/teams/drx.png'
+                : normalizedName.includes('농심') || normalizedName.includes('nongshim')
+                  ? '/teams/nongshim.png'
+                  : normalizedName.includes('브리온') || normalizedName.includes('brion')
+                    ? '/teams/brion.png'
+                    : normalizedName.includes('dn 수퍼스') || normalizedName.includes('dn soopers')
+                      ? '/teams/dn.png'
+                      : ''
+  const displayName = !teamName || teamName === '-' ? '미정' : teamName
+
+  return (
+    <span className="transfer-team-cell">
+      {logo && <img src={logo} alt="" aria-hidden="true" />}
+      <span>{displayName}</span>
+    </span>
+  )
+}
+
 function StoveLeague() {
   const [moves, setMoves] = useState<TransferMove[]>(bundledMoves)
   const [division, setDivision] = useState<(typeof transferDivisions)[number]>('LCK')
@@ -415,8 +448,8 @@ useEffect(() => {
                     <strong>{move.player}</strong>
                     {move.role && <span>{move.role}</span>}
                   </td>
-                  <td>{move.originalTeam || '미정'}</td>
-                  <td>{move.contractTeam || '미정'}</td>
+                  <td><TransferTeamCell teamName={move.originalTeam} /></td>
+                  <td><TransferTeamCell teamName={move.contractTeam} /></td>
                 </tr>
               ))}
             </tbody>
