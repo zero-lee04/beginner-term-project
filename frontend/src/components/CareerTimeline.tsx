@@ -1,3 +1,5 @@
+/* 선수 커리어 타임라인 */
+
 import { useEffect, type CSSProperties } from 'react'
 import { getPlayerCareer } from '../data/lck'
 import type { CareerPlayer } from '../types'
@@ -31,7 +33,9 @@ export default function CareerTimeline({ player, onClose }: Props) {
                 <span className="career-team-logo">
                   {entry.teamLogo
                     ? <img src={entry.teamLogo} alt="" />
-                    : <span className="career-team-mark" style={{ '--career-accent': entry.accent } as CSSProperties}>{entry.teamMark ?? entry.teamShortName}</span>}
+                    : entry.teamMark
+                      ? <span className="career-team-mark" style={{ '--career-accent': entry.accent } as CSSProperties}>{entry.teamMark}</span>
+                      : <img src={`${import.meta.env.BASE_URL}teams/${entry.teamId}.png`} alt="" />}
                 </span>
                 <span className="career-entry-info">
                   <strong>{entry.teamShortName}</strong>

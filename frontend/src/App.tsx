@@ -1,3 +1,5 @@
+/* LCK 프론트엔드 앱 */
+
 import { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from './firebase'
@@ -12,7 +14,7 @@ import './App.css'
 function App() {
   const [selectedTeam, setSelectedTeam] = useState<Team | null>(null)
   const [selectedSeason, setSelectedSeason] = useState(2027)
-  const [availableSeasons, setAvailableSeasons] = useState([2027, 2026, 2025, 2024, 2023])
+  const [availableSeasons, setAvailableSeasons] = useState([2027, 2026, 2025])
   const [seasonTeams, setSeasonTeams] = useState<Team[]>(teams)
   const [showLogin, setShowLogin] = useState(false)
   const [showRoster, setShowRoster] = useState(false)
@@ -26,7 +28,7 @@ function App() {
           .filter((year) => Number.isInteger(year))
           .sort((first, second) => second - first)
         if (isActive) {
-          const availableYears = Array.from(new Set([...years, 2023, 2024, 2025, 2026, 2027])).sort((first, second) => second - first)
+          const availableYears = Array.from(new Set([...years, 2025, 2026, 2027])).sort((first, second) => second - first)
           setAvailableSeasons(availableYears)
           setSelectedSeason((currentSeason) => availableYears.includes(currentSeason) ? currentSeason : availableYears[0])
         }

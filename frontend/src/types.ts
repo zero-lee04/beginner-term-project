@@ -1,3 +1,5 @@
+/* LCK 타입 정의 */
+
 export type Team = {
   id: string
   name: string

@@ -1,3 +1,5 @@
+/* 스토브리그 현황 */
+
 import { useEffect, useState } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase'

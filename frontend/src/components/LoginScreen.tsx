@@ -1,3 +1,5 @@
+/* 로그인 화면 */
+
 import { useState, type FormEvent } from 'react'
 
 export default function LoginScreen({ onBack }: { onBack: () => void }) {
