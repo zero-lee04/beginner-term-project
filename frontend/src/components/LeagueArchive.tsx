@@ -3,9 +3,11 @@ import { leagueSeasons, type LeagueResultRecord } from '../data/leagueResults'
 
 type Props = { onSelectFinalist: (record: LeagueResultRecord) => void }
 
+const seasonsNewestFirst = [...leagueSeasons].sort((first, second) => second.year - first.year)
+
 export default function LeagueArchive({ onSelectFinalist }: Props) {
-  const [selectedYear, setSelectedYear] = useState(leagueSeasons[0].year)
-  const season = leagueSeasons.find((item) => item.year === selectedYear) ?? leagueSeasons[0]
+  const [selectedYear, setSelectedYear] = useState(seasonsNewestFirst[0].year)
+  const season = seasonsNewestFirst.find((item) => item.year === selectedYear) ?? seasonsNewestFirst[0]
 
   return (
     <section className="league-archive" id="league">
@@ -15,11 +17,11 @@ export default function LeagueArchive({ onSelectFinalist }: Props) {
           <h1>LEAGUE <span>ARCHIVE</span></h1>
           <p className="league-archive-description">연도별 LCK와 국제 대회의 결승 진출 팀을 모았습니다.</p>
         </div>
-        <span className="league-archive-index">FINALS · 2023—2026</span>
+        <span className="league-archive-index">FINALS · 2022—2026</span>
       </div>
 
       <div className="league-year-tabs" role="tablist" aria-label="시즌 선택">
-        {leagueSeasons.map(({ year }) => (
+        {seasonsNewestFirst.map(({ year }) => (
           <button
             type="button"
             role="tab"

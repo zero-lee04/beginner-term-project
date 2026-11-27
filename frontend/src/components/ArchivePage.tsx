@@ -14,7 +14,7 @@ const archiveRecords: LeagueResultRecord[] = leagueSeasons.flatMap((season) =>
       eventName: event.name,
     })),
   ),
-)
+).sort((first, second) => second.year - first.year)
 
 function recordKey(record: LeagueResultRecord) {
   return [record.year, record.eventName, record.id, record.result].join('-')
@@ -62,7 +62,7 @@ export default function ArchivePage({ record, onSelectRecord, onBack }: Props) {
           <h1>PHOTO <span>ARCHIVE</span></h1>
           <p>시즌과 대회를 구분하지 않고 결승 사진을 한곳에 모았습니다.</p>
         </div>
-        <span>2023—2026 · {archiveRecords.length} RECORDS</span>
+        <span>2022—2026 · {archiveRecords.length} RECORDS</span>
       </header>
       <div className="archive-card-grid">
         {archiveRecords.map((item) => (
