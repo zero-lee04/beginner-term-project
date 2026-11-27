@@ -1374,6 +1374,7 @@
 
 .career-dialog {
   position: relative;
+  isolation: isolate;
   width: min(100%, 560px);
   max-height: min(82vh, 720px);
   overflow-y: auto;
@@ -1383,8 +1384,26 @@
   box-shadow: 0 24px 90px #000a;
 }
 
+.career-background-image {
+  position: absolute;
+  z-index: 0;
+  right: 4%;
+  bottom: 4%;
+  width: min(82%, 440px);
+  height: auto;
+  opacity: .13;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.career-dialog > :not(.career-background-image):not(.career-close) {
+  position: relative;
+  z-index: 1;
+}
+
 .career-close {
   position: absolute;
+  z-index: 2;
   top: 14px;
   right: 17px;
   width: 36px;

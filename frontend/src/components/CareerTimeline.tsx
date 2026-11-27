@@ -2,7 +2,7 @@
 
 import { useEffect, type CSSProperties } from 'react'
 import { getPlayerCareer } from '../data/lck'
-import { getPlayerProfileLinks } from '../data/playerProfiles'
+import { getPlayerCareerBackground, getPlayerProfileLinks } from '../data/playerProfiles'
 import type { CareerPlayer } from '../types'
 import PlayerProfileDetails from './PlayerProfileDetails'
 
@@ -11,6 +11,7 @@ type Props = { player: CareerPlayer; onClose: () => void }
 export default function CareerTimeline({ player, onClose }: Props) {
   const career = getPlayerCareer(player)
   const profileLinks = getPlayerProfileLinks(player)
+  const careerBackground = getPlayerCareerBackground(player)
 
   useEffect(() => {
     function closeOnEscape(event: KeyboardEvent) {
@@ -23,6 +24,12 @@ export default function CareerTimeline({ player, onClose }: Props) {
   return (
     <div className="career-overlay" onClick={onClose}>
       <section className="career-dialog" role="dialog" aria-modal="true" aria-labelledby="career-title" onClick={(event) => event.stopPropagation()}>
+        {careerBackground && <img
+          className="career-background-image"
+          src={`${import.meta.env.BASE_URL}${careerBackground.replace(/^\/+/, '')}`}
+          alt=""
+          aria-hidden="true"
+        />}
         <button className="career-close" type="button" onClick={onClose} aria-label="타임라인 닫기">×</button>
         <p className="career-kicker">PLAYER JOURNEY</p>
         <h2 id="career-title">{player.name}<span> CAREER</span></h2>
