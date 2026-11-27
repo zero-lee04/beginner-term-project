@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from './firebase'
 import { getSeasonRosterData, teams } from './data/lck'
-import type { Team } from './types'
+import type { CareerPlayer, Team } from './types'
 import LoginScreen from './components/LoginScreen'
+import CareerTimeline from './components/CareerTimeline'
+import PlayerSearch from './components/PlayerSearch'
 import StoveLeague from './components/StoveLeague'
 import TeamGrid from './components/TeamGrid'
 import TeamRoster from './components/TeamRoster'
@@ -18,6 +20,7 @@ function App() {
   const [seasonTeams, setSeasonTeams] = useState<Team[]>(teams)
   const [showLogin, setShowLogin] = useState(false)
   const [showRoster, setShowRoster] = useState(false)
+  const [careerPlayer, setCareerPlayer] = useState<CareerPlayer | null>(null)
 
   useEffect(() => {
     let isActive = true
@@ -91,6 +94,14 @@ function App() {
         {!showLogin && <nav className="topnav" aria-label="주요 메뉴">
           <a className="nav-active" href="#teams">TEAMS</a><a href="#teams">LEAGUE</a><a href="#teams">COMMUNITY</a><a href="#stove-league">STOVE LEAGUE</a>
         </nav>}
+        {!showLogin && <PlayerSearch
+          teams={seasonTeams}
+          onSelectPlayer={(player) => setCareerPlayer(player)}
+          onSelectTeam={(team) => {
+            setCareerPlayer(null)
+            selectTeam(team)
+          }}
+        />}
         {showLogin
           ? <button className="login-header-button" type="button" onClick={() => setShowLogin(false)}>BACK TO HOME</button>
           : <button className="login-header-button" type="button" onClick={() => setShowLogin(true)}>LOGIN <span aria-hidden="true">↗</span></button>}
@@ -130,6 +141,7 @@ function App() {
             <StoveLeague />
             <footer className="site-footer"><span>LOOP IN. LOCK IN. LCK.</span><span>MADE FOR LCK FANS <b>✳</b> 2026</span></footer>
           </>}
+      {careerPlayer && <CareerTimeline player={careerPlayer} onClose={() => setCareerPlayer(null)} />}
     </main>
   )
 }

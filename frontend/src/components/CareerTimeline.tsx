@@ -30,7 +30,7 @@ export default function CareerTimeline({ player, onClose }: Props) {
               <li className="career-entry" key={`${entry.season}-${entry.teamId}-${entry.league}-${entry.label}`}>
                 <span className="career-marker" style={{ '--career-accent': entry.accent } as CSSProperties} />
                 <span className="career-year">{entry.season}</span>
-                <span className="career-team-logo">
+                <span className={`career-team-logo${entry.teamId === 'dn' ? ' career-team-logo-dn' : ''}`}>
                   {entry.teamLogo
                     ? <img src={entry.teamLogo} alt="" />
                     : entry.teamMark
