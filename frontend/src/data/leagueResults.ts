@@ -29,6 +29,10 @@ const teamLogos: Record<string, string> = {
   kt: 'teams/kt.png',
   dk: 'teams/dk.png',
   bnk: 'teams/bnk.png',
+  jdg: 'teams/jdg.png',
+  bilibili: 'teams/blg.png',
+  edg: 'teams/edg.png',
+  weibo: 'teams/wbg.png',
 }
 
 function finalTeams(

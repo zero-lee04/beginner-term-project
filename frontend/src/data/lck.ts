@@ -157,6 +157,7 @@ export function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
         league: 'LPL',
         role: '바텀',
         label: 'BOT',
+        teamLogo: getTeamLogoSource({ id: 'jdg' }),
         teamMark: 'JDG',
       })
     }
@@ -172,6 +173,7 @@ export function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
       league: 'LPL',
       role: '바텀',
       label: 'BOT',
+      teamLogo: getTeamLogoSource({ id: 'jdg' }),
       teamMark: 'JDG',
     })
   }
