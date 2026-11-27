@@ -28,7 +28,7 @@ const teamLogos: Record<string, string> = {
   hle: 'teams/hle.png',
   kt: 'teams/kt.png',
   dk: 'teams/dk.png',
-  drx: 'teams/drx.png',
+  drx: 'teams/2025drx.png',
   bnk: 'teams/bnk.png',
   rng: 'teams/rng.png',
   jdg: 'teams/jdg.png',
