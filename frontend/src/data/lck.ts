@@ -2,6 +2,7 @@ import rosterData2027 from '../../data/lck-rosters-2027.json'
 import rosterData2026 from '../../data/lck-rosters-2026.json'
 import rosterData2025 from '../../data/lck-rosters-2025.json'
 import rosterData2024 from '../../data/lck-rosters-2024.json'
+import rosterData2023 from '../../data/lck-rosters-2023.json'
 import type { CareerEntry, CareerPlayer, RosterPlayer, Team } from '../types'
 
 export const teams: Team[] = [
@@ -24,7 +25,7 @@ export function getTeamLogoSource(team: Pick<Team, 'id' | 'logo'>) {
 }
 
 export function getSeasonRosterData(season: number) {
-  const seasonData = [rosterData2027, rosterData2026, rosterData2025, rosterData2024]
+  const seasonData = [rosterData2027, rosterData2026, rosterData2025, rosterData2024, rosterData2023]
   return seasonData.find((data) => data.season === season) ?? null
 }
 
@@ -45,7 +46,7 @@ export function getLocalRoster(season: number, teamId: string): RosterPlayer[] {
 export function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
   const normalizedName = player.name.trim().toLowerCase()
   const normalizedKoreanName = player.koreanName.trim()
-  const seasons = [rosterData2024, rosterData2025, rosterData2026, rosterData2027]
+  const seasons = [rosterData2023, rosterData2024, rosterData2025, rosterData2026, rosterData2027]
   const career: CareerEntry[] = []
 
   for (const seasonData of seasons) {
