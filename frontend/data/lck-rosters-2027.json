@@ -1,12 +1,12 @@
 {
   "season": 2027,
   "source": "https://lol-stove.ps-esports.kr/lck",
-  "snapshotDate": "2026-11-25",
+  "snapshotDate": "2026-11-27",
   "teams": [
     {
       "id": "t1", "name": "T1", "shortName": "T1", "mark": "T1", "accent": "#e84048", "motto": "Limitless: Never Ending Story",
       "players": [
-        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "Zeus", "koreanName": "최우제" },
         { "role": "JUNGLE", "label": "정글", "name": "Oner", "koreanName": "문현준" },
         { "role": "MID", "label": "미드", "name": "Faker", "koreanName": "이상혁" },
         { "role": "BOT", "label": "바텀", "name": "Peyz", "koreanName": "김수환" },
@@ -46,7 +46,7 @@
     {
       "id": "hle", "name": "Hanwha Life Esports", "shortName": "HLE", "mark": "H", "accent": "#ff702d", "motto": "BeyondTheChallenge",
       "players": [
-        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "Kiin", "koreanName": "김기인" },
         { "role": "JUNGLE", "label": "정글", "name": "Canyon", "koreanName": "김건부" },
         { "role": "MID", "label": "미드", "name": "Zeka", "koreanName": "김건우" },
         { "role": "BOT", "label": "바텀", "name": "Gumayusi", "koreanName": "이민형" },
@@ -71,7 +71,7 @@
         { "role": "TOP", "label": "탑", "name": "PerfecT", "koreanName": "" },
         { "role": "JUNGLE", "label": "정글", "name": "Raptor", "koreanName": "" },
         { "role": "MID", "label": "미드", "name": "Bdd", "koreanName": "곽보성" },
-        { "role": "BOT", "label": "바텀", "name": "Free agent", "koreanName": "" },
+        { "role": "BOT", "label": "바텀", "name": "Taeyoon", "koreanName": "이태윤" },
         { "role": "SUPPORT", "label": "서포터", "name": "Kellin", "koreanName": "" },
         { "role": "TOP", "label": "탑", "name": "Sero", "koreanName": "", "league": "LCK CL" },
         { "role": "JUNGLE", "label": "정글", "name": "Free agent", "koreanName": "", "league": "LCK CL" },
@@ -132,16 +132,16 @@
     {
       "id": "bnk", "name": "BNK FEARX", "shortName": "BFX", "mark": "F", "accent": "#ff8a28", "motto": "NoDoubt",
       "players": [
-        { "role": "TOP", "label": "탑", "name": "Free agent", "koreanName": "" },
+        { "role": "TOP", "label": "탑", "name": "Thanatos", "koreanName": "" },
         { "role": "JUNGLE", "label": "정글", "name": "Vincenzo", "koreanName": "" },
         { "role": "MID", "label": "미드", "name": "VicLa", "koreanName": "이대광" },
         { "role": "BOT", "label": "바텀", "name": "Noah", "koreanName": "" },
         { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "" },
-        { "role": "TOP", "label": "탑", "name": "Kangin", "koreanName": "", "league": "LCK CL" },
+        { "role": "TOP", "label": "탑", "name": "Lancer", "koreanName": "", "league": "LCK CL" },
         { "role": "JUNGLE", "label": "정글", "name": "Grizzly", "koreanName": "", "league": "LCK CL" },
-        { "role": "MID", "label": "미드", "name": "MG", "koreanName": "", "league": "LCK CL" },
-        { "role": "BOT", "label": "바텀", "name": "Slayer", "koreanName": "", "league": "LCK CL" },
-        { "role": "SUPPORT", "label": "서포터", "name": "Free agent", "koreanName": "", "league": "LCK CL" }
+        { "role": "MID", "label": "미드", "name": "Ivory", "koreanName": "", "league": "LCK CL" },
+        { "role": "BOT", "label": "바텀", "name": "Paduck", "koreanName": "", "league": "LCK CL" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Berr", "koreanName": "", "league": "LCK CL" }
       ],
       "staff": [
         { "league": "LCK", "role": "감독", "name": "Rather" },
