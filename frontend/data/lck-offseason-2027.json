@@ -1,7 +1,7 @@
 {
   "year": 2027,
   "source": "https://game.naver.com/esports/League_of_Legends/stoveleague/lck2026",
-  "snapshotDate": "2026-11-25",
+  "snapshotDate": "2026-11-27",
   "teams": [
     { "id": "t1", "name": "T1", "shortName": "T1", "mark": "T1", "accent": "#e84048", "motto": "", "players": [] },
     { "id": "gen-g", "name": "Gen.G", "shortName": "GEN", "mark": "G", "accent": "#cfaa43", "motto": "", "players": [] },
@@ -15,6 +15,10 @@
     { "id": "dn", "name": "DN SOOPers", "shortName": "DNS", "mark": "DN", "accent": "#f04e23", "motto": "", "players": [] }
   ],
   "transfers": [
+    {"status":"이적","player":"Kiin","role":"TOP","originalTeam":"젠지","contractTeam":"한화생명e스포츠"},
+    {"status":"이적","player":"Taeyoon","role":"AD","originalTeam":"BNK 피어엑스","contractTeam":"kt 롤스터"},
+    {"status":"이적", "player":"Zeus", "role":"TOP", "originalTeam":"한화생명e스포츠", "contractTeam": "T1"},
+    {"status":"이적", "player":"Thanatos", "role":"TOP", "originalTeam": "Cloud9", "contractTeam": "BNK 피어엑스"},
     {"status":"이적","player":"Cloud","role":"SPT","originalTeam":"T1 e스포츠 아카데미","contractTeam":"젠지"},
     {"status":"이적","player":"Sharvel","role":"JGL","originalTeam":"DN 수퍼스","contractTeam":"젠지"},
     {"status":"이적","player":"Siwoo","role":"TOP","originalTeam":"Dplus Kia","contractTeam":"젠지"},
@@ -84,7 +88,6 @@
     {"status":"계약 종료","player":"MG","role":"MID","originalTeam":"BNK 피어엑스 유스","contractTeam":"-"},
     {"status":"계약 종료","player":"Zephyr","role":"JGL","originalTeam":"BNK 피어엑스 유스","contractTeam":"-"},
     {"status":"계약 종료","player":"Kangin","role":"TOP","originalTeam":"BNK 피어엑스 유스","contractTeam":"-"},
-    {"status":"계약 종료","player":"Taeyoon","role":"AD","originalTeam":"BNK 피어엑스","contractTeam":"-"},
     {"status":"계약 종료","player":"Daystar","role":"MID","originalTeam":"BNK 피어엑스","contractTeam":"-"},
     {"status":"계약 종료","player":"Clear","role":"TOP","originalTeam":"BNK 피어엑스","contractTeam":"-"},
     {"status":"계약 종료","player":"Ghost","role":"AD","originalTeam":"kt 롤스터 챌린저스","contractTeam":"-"},

@@ -426,9 +426,19 @@ type TransferMove = {
 
 const transferFilters = ['전체', '재계약', '이적', '계약 종료'] as const
 const transferDivisions = ['LCK', 'LCK CL'] as const
+
+function inferTransferDivision(originalTeam: string, contractTeam: string) {
+  const destination = contractTeam && contractTeam !== '-' ? contractTeam : originalTeam
+  return /챌린저스|유스|아카데미|Academy|Challengers/i.test(destination) ? 'LCK CL' : 'LCK'
+}
+
+function getTransferPlayerKey(move: Pick<TransferMove, 'player' | 'role'>) {
+  return `${move.player.trim().toLowerCase()}-${move.role.trim().toUpperCase()}`
+}
+
 const bundledMoves: TransferMove[] = offseason2027.transfers.map((move, index) => ({
   id: `move-${String(index + 1).padStart(3, '0')}`,
-  division: /챌린저스|유스|아카데미|Academy|Challengers/i.test(`${move.originalTeam} ${move.contractTeam}`) ? 'LCK CL' : 'LCK',
+  division: inferTransferDivision(move.originalTeam, move.contractTeam),
   status: move.status,
   player: move.player,
   role: move.role,
@@ -488,18 +498,24 @@ useEffect(() => {
         const snapshot = await getDocs(movesQuery)
         const loadedMoves = snapshot.docs.map((moveDocument) => {
           const data = moveDocument.data()
+          const originalTeam = String(data.originalTeam ?? '')
+          const contractTeam = String(data.contractTeam ?? '')
           return {
             id: moveDocument.id,
-            division: String(data.division ?? 'LCK'),
+            division: inferTransferDivision(originalTeam, contractTeam),
             status: String(data.status ?? ''),
             player: String(data.player ?? ''),
             role: String(data.role ?? ''),
-            originalTeam: String(data.originalTeam ?? ''),
-            contractTeam: String(data.contractTeam ?? ''),
+            originalTeam,
+            contractTeam,
           }
         })
 
-        if (isActive && loadedMoves.length > 0) setMoves(loadedMoves)
+        if (isActive && loadedMoves.length > 0) {
+          const bundledPlayerKeys = new Set(bundledMoves.map(getTransferPlayerKey))
+          const firestoreOnlyMoves = loadedMoves.filter((move) => !bundledPlayerKeys.has(getTransferPlayerKey(move)))
+          setMoves([...bundledMoves, ...firestoreOnlyMoves])
+        }
       } catch {
         // Keep the bundled snapshot visible when Firestore is not seeded or reachable.
       } finally {

@@ -135,8 +135,10 @@ for (const fileName of archiveFiles) {
 
       const transferId = String(transfer.id ?? `move-${String(index + 1).padStart(3, '0')}`)
       const transferDocument = `${archiveDocument}/transfers/${transferId}`
-      const teamNames = `${transfer.originalTeam ?? ''} ${transfer.contractTeam ?? ''}`
-      const inferredDivision = /챌린저스|유스|아카데미|Academy|Challengers/i.test(teamNames) ? 'LCK CL' : 'LCK'
+      const destination = transfer.contractTeam && transfer.contractTeam !== '-'
+        ? transfer.contractTeam
+        : transfer.originalTeam ?? ''
+      const inferredDivision = /챌린저스|유스|아카데미|Academy|Challengers/i.test(destination) ? 'LCK CL' : 'LCK'
       const division = String(transfer.division ?? inferredDivision)
       if (!['LCK', 'LCK CL'].includes(division)) {
         throw new Error(`${year} 스토브리그 ${transfer.player}의 division은 LCK 또는 LCK CL이어야 합니다.`)
