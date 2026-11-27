@@ -34,6 +34,8 @@ export type CareerEntry = {
   league: string
   role: string
   label: string
+  teamLogo?: string
+  teamMark?: string
 }
 
 export type CareerPlayer = Pick<RosterPlayer, 'name' | 'koreanName'>

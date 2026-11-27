@@ -1355,6 +1355,17 @@
   object-fit: contain;
 }
 
+.career-team-mark {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--career-accent) 70%, transparent);
+  border-radius: 50%;
+  color: var(--career-accent);
+  font: 700 9px 'DM Mono', monospace;
+}
+
 .career-entry-info {
   display: grid;
   gap: 4px;

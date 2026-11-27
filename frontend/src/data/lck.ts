@@ -66,6 +66,7 @@ export function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
       }
 
       for (const candidate of uniquePlayers.values()) {
+        const teamLogo = 'logo' in team && typeof team.logo === 'string' ? team.logo : undefined
         career.push({
           season: seasonData.season,
           teamId: team.id,
@@ -75,9 +76,27 @@ export function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
           league: candidate.league ?? 'LCK',
           role: candidate.label,
           label: candidate.role,
+          teamLogo: teamLogo
+            ? getTeamLogoSource({ id: team.id, logo: teamLogo })
+            : `${import.meta.env.BASE_URL}teams/${team.id}.png`,
+          teamMark: team.mark,
         })
       }
     }
+  }
+
+  if (normalizedName === 'peyz' || normalizedKoreanName === '김수환') {
+    career.push({
+      season: 2025,
+      teamId: 'jdg',
+      teamName: 'JD Gaming',
+      teamShortName: 'JDG',
+      accent: '#d71920',
+      league: 'LPL',
+      role: '바텀',
+      label: 'BOT',
+      teamMark: 'JDG',
+    })
   }
 
   return career.sort((first, second) => first.season - second.season || first.teamName.localeCompare(second.teamName))

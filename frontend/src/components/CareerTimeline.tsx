@@ -28,10 +28,14 @@ export default function CareerTimeline({ player, onClose }: Props) {
               <li className="career-entry" key={`${entry.season}-${entry.teamId}-${entry.league}-${entry.label}`}>
                 <span className="career-marker" style={{ '--career-accent': entry.accent } as CSSProperties} />
                 <span className="career-year">{entry.season}</span>
-                <span className="career-team-logo"><img src={`${import.meta.env.BASE_URL}teams/${entry.teamId}.png`} alt="" /></span>
+                <span className="career-team-logo">
+                  {entry.teamLogo
+                    ? <img src={entry.teamLogo} alt="" />
+                    : <span className="career-team-mark" style={{ '--career-accent': entry.accent } as CSSProperties}>{entry.teamMark ?? entry.teamShortName}</span>}
+                </span>
                 <span className="career-entry-info">
                   <strong>{entry.teamShortName}</strong>
-                  <span>{entry.league === 'LCK CL' ? 'LCK 챌린저스' : 'LCK'} · {entry.role}</span>
+                  <span>{entry.league === 'LCK CL' ? 'LCK 챌린저스' : entry.league} · {entry.role}</span>
                 </span>
                 {entry.season === 2027 && <span className="career-projection">전망</span>}
                 {index < career.length - 1 && <span className="career-connector" aria-hidden="true" />}
@@ -39,7 +43,7 @@ export default function CareerTimeline({ player, onClose }: Props) {
             ))}
           </ol>
         ) : <p className="career-empty">등록된 시즌별 이력이 아직 없습니다.</p>}
-        <p className="career-note">등록된 시즌 로스터 기준이며, 2027 표시는 전망 로스터입니다.</p>
+        <p className="career-note">등록된 시즌 로스터와 해외 리그 경력을 기준으로 표시하며, 2027 표시는 전망 로스터입니다.</p>
       </section>
     </div>
   )
