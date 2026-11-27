@@ -468,7 +468,13 @@ function TransferTeamCell({ teamName }: { teamName: string }) {
                     ? `${import.meta.env.BASE_URL}teams/brion.png`
                     : normalizedName.includes('dn 수퍼스') || normalizedName.includes('dn soopers')
                       ? `${import.meta.env.BASE_URL}teams/dn.png`
-                      : ''
+                      : normalizedName.includes('shifters')
+                        ? `${import.meta.env.BASE_URL}teams/shifters.png`
+                        : normalizedName.includes('giantx')
+                          ? `${import.meta.env.BASE_URL}teams/giantx.png`
+                          : normalizedName.includes('cloud9')
+                            ? `${import.meta.env.BASE_URL}teams/cloud9.png`
+                            : ''
   const displayName = !teamName || teamName === '-' ? '미정' : teamName
 
   return (
