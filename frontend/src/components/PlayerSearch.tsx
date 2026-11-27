@@ -30,7 +30,7 @@ export default function PlayerSearch({ teams, onSelectPlayer, onSelectTeam }: Pr
   const [isOpen, setIsOpen] = useState(false)
   const query = search.trim().toLocaleLowerCase()
   const matches = useMemo(() => {
-    if (!query) return []
+    if (!query) return { players: [], teams: [] }
     const playerMatches = players.filter((player) =>
       player.name.toLocaleLowerCase().includes(query)
       || player.koreanName.includes(search.trim()),
