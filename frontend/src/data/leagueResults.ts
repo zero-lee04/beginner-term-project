@@ -28,7 +28,9 @@ const teamLogos: Record<string, string> = {
   hle: 'teams/hle.png',
   kt: 'teams/kt.png',
   dk: 'teams/dk.png',
+  drx: 'teams/drx.png',
   bnk: 'teams/bnk.png',
+  rng: 'teams/rng.png',
   jdg: 'teams/jdg.png',
   bilibili: 'teams/blg.png',
   edg: 'teams/edg.png',
@@ -48,6 +50,15 @@ function finalTeams(
 const team = (id: string, name: string, shortName = name) => ({ id, name, shortName })
 
 export const leagueSeasons: LeagueSeason[] = [
+  {
+    year: 2022,
+    events: [
+      { name: 'LCK 스프링', finalists: finalTeams(team('t1', 'T1'), team('gen-g', 'Gen.G', 'GEN')) },
+      { name: 'LCK 서머', finalists: finalTeams(team('gen-g', 'Gen.G', 'GEN'), team('t1', 'T1')) },
+      { name: 'MSI', finalists: finalTeams(team('rng', 'Royal Never Give Up', 'RNG'), team('t1', 'T1')) },
+      { name: '월드 챔피언십', finalists: finalTeams(team('drx', 'DRX'), team('t1', 'T1')) },
+    ],
+  },
   {
     year: 2026,
     events: [
