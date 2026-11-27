@@ -1,0 +1,127 @@
+{
+  "season": 2018,
+  "source": "https://namu.wiki/w/LCK%20%EC%8A%A4%ED%86%A0%EB%B8%8C%EB%A6%AC%EA%B7%B8/2017#s-10",
+  "teams": [
+    {
+      "id": "gen-g", "name": "KSV eSports", "shortName": "KSV", "mark": "KSV", "accent": "#c5a74a", "motto": "Always Believe", "logo": "/teams/ksv-2018.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "CuVee", "koreanName": "이성진", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Ambition", "koreanName": "강찬용", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Haru", "koreanName": "강민승", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Crown", "koreanName": "이민호", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Ruler", "koreanName": "박재혁", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "CoreJJ", "koreanName": "조용인", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Life", "koreanName": "김정민", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "Edgar" }, { "league": "LCK", "role": "코치", "name": "oDin" }, { "league": "LCK", "role": "코치", "name": "TrAce" }]
+    },
+    {
+      "id": "t1", "name": "SK telecom T1", "shortName": "SKT", "mark": "T1", "accent": "#e84048", "motto": "Limitless: Never Ending Story", "logo": "/teams/skt-2019.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Untara", "koreanName": "박의진", "league": "LCK" },
+        { "role": "TOP", "label": "탑", "name": "Thal", "koreanName": "박권혁", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Blank", "koreanName": "강선구", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Blossom", "koreanName": "박범찬", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Faker", "koreanName": "이상혁", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Pirean", "koreanName": "최준식", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Bang", "koreanName": "배준식", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Leo", "koreanName": "한겨레", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Wolf", "koreanName": "이재완", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Effort", "koreanName": "이상호", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "kkOma" }, { "league": "LCK", "role": "코치", "name": "PoohManDu" }]
+    },
+    {
+      "id": "kt", "name": "kt Rolster", "shortName": "KT", "mark": "KT", "accent": "#ed2939", "motto": "BreakTheLimits", "logo": "/teams/2021kt.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Smeb", "koreanName": "송경호", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Score", "koreanName": "고동빈", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Rush", "koreanName": "이윤재", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "PawN", "koreanName": "허원석", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Ucal", "koreanName": "손우현", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Deft", "koreanName": "김혁규", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Mata", "koreanName": "조세형", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "ZanDarC" }, { "league": "LCK", "role": "코치", "name": "Jeong Je-seung" }, { "league": "LCK", "role": "코치", "name": "S0NSTAR" }]
+    },
+    {
+      "id": "drx", "name": "KING-ZONE DragonX", "shortName": "KZ", "mark": "KZ", "accent": "#5b9dff", "motto": "Challenge the limits", "logo": "/teams/kingzone-dragonx-2019.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Khan", "koreanName": "김동하", "league": "LCK" },
+        { "role": "TOP", "label": "탑", "name": "Rascal", "koreanName": "김광희", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Peanut", "koreanName": "한왕호", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Cuzz", "koreanName": "문우찬", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Bdd", "koreanName": "곽보성", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "PraY", "koreanName": "김종인", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "GorillA", "koreanName": "강범현", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "Hirai" }, { "league": "LCK", "role": "코치", "name": "ActScene" }]
+    },
+    {
+      "id": "hle", "name": "ROX Tigers", "shortName": "ROX", "mark": "ROX", "accent": "#e84a24", "motto": "Never Give Up", "logo": "/teams/rox-2018.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Lindarang", "koreanName": "허만흥", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Mightybear", "koreanName": "김민수", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "SeongHwan", "koreanName": "윤성환", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Kuzan", "koreanName": "이성혁", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Lava", "koreanName": "김태훈", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Sangyoon", "koreanName": "권상윤", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Key", "koreanName": "김한기", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "OnAir" }, { "league": "LCK", "role": "코치", "name": "Emperor" }]
+    },
+    {
+      "id": "kdf", "name": "Afreeca Freecs", "shortName": "AF", "mark": "AF", "accent": "#00a8e0", "motto": "One Step Ahead", "logo": "/teams/2020af.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Kiin", "koreanName": "김기인", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Spirit", "koreanName": "이다윤", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Mowgli", "koreanName": "이재하", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Kuro", "koreanName": "이서행", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Kramer", "koreanName": "하종훈", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Aiming", "koreanName": "김하람", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "TusiN", "koreanName": "박종익", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "iloveoov" }, { "league": "LCK", "role": "코치", "name": "Ccomet" }, { "league": "LCK", "role": "코치", "name": "Zefa" }]
+    },
+    {
+      "id": "jin-air", "name": "Jin Air Greenwings", "shortName": "JAG", "mark": "JAG", "accent": "#76c043", "motto": "Fly High", "logo": "/teams/jin-air-2019.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "SoHwan", "koreanName": "김준영", "league": "LCK" },
+        { "role": "TOP", "label": "탑", "name": "TaNa", "koreanName": "이상욱", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "UmTi", "koreanName": "엄성현", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Grace", "koreanName": "이찬주", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Justice", "koreanName": "윤석준", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Teddy", "koreanName": "박진성", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Wraith", "koreanName": "권지민", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "H-Dragon" }]
+    },
+    {
+      "id": "bbq", "name": "bbq OLIVERS", "shortName": "BBQ", "mark": "BBQ", "accent": "#e28c15", "motto": "Taste the Victory", "logo": "/teams/bbq-2018.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Crazy", "koreanName": "김재희", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Trick", "koreanName": "김강윤", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Bono", "koreanName": "김기범", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Tempt", "koreanName": "강명구", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Ghost", "koreanName": "장용준", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "IgNar", "koreanName": "이동근", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "Ssong" }, { "league": "LCK", "role": "코치", "name": "Xero" }]
+    },
+    {
+      "id": "kongdoo", "name": "Kongdoo Monster", "shortName": "KDM", "mark": "KDM", "accent": "#5eb9b4", "motto": "Unleash the Monster", "logo": "/teams/kongdoo-2018.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "Roach", "koreanName": "김강희", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Raise", "koreanName": "오지환", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "U Jun", "koreanName": "나유준", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Edge", "koreanName": "이호성", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Han", "koreanName": "최현우", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "SSol", "koreanName": "서진솔", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Secret", "koreanName": "박기선", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "Sweet" }, { "league": "LCK", "role": "코치", "name": "WhyManMC" }, { "league": "LCK", "role": "코치", "name": "Rigby" }]
+    },
+    {
+      "id": "mvp", "name": "MVP", "shortName": "MVP", "mark": "MVP", "accent": "#2378ba", "motto": "Make Victory Possible", "logo": "/teams/mvp-2018.png",
+      "players": [
+        { "role": "TOP", "label": "탑", "name": "ADD", "koreanName": "강건모", "league": "LCK" },
+        { "role": "JUNGLE", "label": "정글", "name": "Beyond", "koreanName": "김규석", "league": "LCK" },
+        { "role": "MID", "label": "미드", "name": "Ian", "koreanName": "안준형", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "MaHa", "koreanName": "오현식", "league": "LCK" },
+        { "role": "BOT", "label": "바텀", "name": "Pilot", "koreanName": "나우형", "league": "LCK" },
+        { "role": "SUPPORT", "label": "서포터", "name": "Max", "koreanName": "정종빈", "league": "LCK" }
+      ], "staff": [{ "league": "LCK", "role": "감독", "name": "Hell" }, { "league": "LCK", "role": "코치", "name": "Saroo" }]
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import rosterData2022 from '../../data/lck-rosters-2022.json'
 import rosterData2021 from '../../data/lck-rosters-2021.json'
 import rosterData2020 from '../../data/lck-rosters-2020.json'
 import rosterData2019 from '../../data/lck-rosters-2019.json'
+import rosterData2018 from '../../data/lck-rosters-2018.json'
 import type { CareerEntry, CareerPlayer, RosterPlayer, Team } from '../types'
 
 export const teams: Team[] = [
@@ -31,13 +32,13 @@ export function getTeamLogoSource(team: Pick<Team, 'id' | 'logo'>) {
 }
 
 export function getSeasonRosterData(season: number) {
-  return [rosterData2027, rosterData2026, rosterData2025, rosterData2024, rosterData2023, rosterData2022, rosterData2021, rosterData2020, rosterData2019]
+  return [rosterData2027, rosterData2026, rosterData2025, rosterData2024, rosterData2023, rosterData2022, rosterData2021, rosterData2020, rosterData2019, rosterData2018]
     .find((seasonData) => seasonData.season === season) ?? null
 }
 
 export function getCareerPlayerOptions(): CareerPlayer[] {
   const players = new Map<string, CareerPlayer>()
-  const seasons = [rosterData2027, rosterData2026, rosterData2025, rosterData2024, rosterData2023, rosterData2022, rosterData2021, rosterData2020, rosterData2019]
+  const seasons = [rosterData2027, rosterData2026, rosterData2025, rosterData2024, rosterData2023, rosterData2022, rosterData2021, rosterData2020, rosterData2019, rosterData2018]
 
   for (const seasonData of seasons) {
     for (const team of seasonData.teams) {
@@ -73,7 +74,7 @@ export function getLocalRoster(season: number, teamId: string): RosterPlayer[] {
 export function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
   const normalizedName = player.name.trim().toLowerCase()
   const normalizedKoreanName = player.koreanName.trim()
-  const seasons = [rosterData2019, rosterData2020, rosterData2021, rosterData2022, rosterData2023, rosterData2024, rosterData2025, rosterData2026, rosterData2027]
+  const seasons = [rosterData2018, rosterData2019, rosterData2020, rosterData2021, rosterData2022, rosterData2023, rosterData2024, rosterData2025, rosterData2026, rosterData2027]
   const career: CareerEntry[] = []
 
   for (const seasonData of seasons) {
