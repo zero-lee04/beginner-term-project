@@ -26,6 +26,7 @@ const playerProfiles: PlayerProfile[] = [
   },
   {
     names: ['doran', '최현준'],
+    careerBackground: 'playersign/doran_sign.png',
     links: [
       { category: '개인 SNS', title: 'Instagram · @choi_doran', href: 'https://www.instagram.com/choi_doran/' },
       { category: '개인 방송국', title: 'SOOP · 도란도라아안', href: 'https://www.sooplive.com/station/choi15778' },
