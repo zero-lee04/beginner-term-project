@@ -53,6 +53,23 @@
           "koreanName": "손시우",
           "league": "LCK"
         }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "Score"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Mafa"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Museong"
+        }
       ]
     },
     {
@@ -105,6 +122,23 @@
           "name": "Asper",
           "koreanName": "김태기",
           "league": "LCK"
+        }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "Polt"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Moment"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Bengi"
         }
       ]
     },
@@ -166,6 +200,23 @@
           "koreanName": "김정민",
           "league": "LCK"
         }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "Hirai"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Supreme"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Acorn"
+        }
       ]
     },
     {
@@ -219,6 +270,18 @@
           "koreanName": "오효성",
           "league": "LCK"
         }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "Kezman"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "SuDal"
+        }
       ]
     },
     {
@@ -228,7 +291,7 @@
       "mark": "DK",
       "accent": "#00a5e5",
       "motto": "ShowMeYourMadness",
-      "logo": "/teams/dk.png",
+      "logo": "/teams/dwgkia-2022.png",
       "players": [
         {
           "role": "TOP",
@@ -272,6 +335,28 @@
           "koreanName": "김형규",
           "league": "LCK"
         }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "총감독",
+          "name": "kkOma"
+        },
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "Daeny"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Zefa"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Bubbling"
+        }
       ]
     },
     {
@@ -281,7 +366,7 @@
       "mark": "D",
       "accent": "#5b9dff",
       "motto": "Unbreakables",
-      "logo": "/teams/drx.png",
+      "logo": "/teams/2025drx.png",
       "players": [
         {
           "role": "TOP",
@@ -324,6 +409,23 @@
           "name": "BeryL",
           "koreanName": "조건희",
           "league": "LCK"
+        }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "Kim"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Mowgli"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Shine"
         }
       ]
     },
@@ -378,6 +480,28 @@
           "koreanName": "김진홍",
           "league": "LCK"
         }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "Micro"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Joker"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Travel"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "PawN"
+        }
       ]
     },
     {
@@ -387,7 +511,7 @@
       "mark": "BRO",
       "accent": "#087140",
       "motto": "Never Give Up",
-      "logo": "/teams/brion-2023.png",
+      "logo": "/teams/fredit-brion-2022.png",
       "players": [
         {
           "role": "TOP",
@@ -430,6 +554,18 @@
           "name": "Delight",
           "koreanName": "유환중",
           "league": "LCK"
+        }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "Edgar"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Drinker"
         }
       ]
     },
@@ -483,6 +619,23 @@
           "name": "Peter",
           "koreanName": "정윤수",
           "league": "LCK"
+        }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "sBs"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Noblesse"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Comet"
         }
       ]
     },
@@ -543,6 +696,23 @@
           "name": "Moham",
           "koreanName": "정재훈",
           "league": "LCK"
+        }
+      ],
+      "staff": [
+        {
+          "league": "LCK",
+          "role": "감독",
+          "name": "Cain"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Spirit"
+        },
+        {
+          "league": "LCK",
+          "role": "코치",
+          "name": "Alvingo"
         }
       ]
     }
