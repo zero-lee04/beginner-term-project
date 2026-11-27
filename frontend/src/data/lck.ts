@@ -3,6 +3,8 @@
 import rosterData2027 from '../../data/lck-rosters-2027.json'
 import rosterData2026 from '../../data/lck-rosters-2026.json'
 import rosterData2025 from '../../data/lck-rosters-2025.json'
+import rosterData2024 from '../../data/lck-rosters-2024.json'
+import rosterData2023 from '../../data/lck-rosters-2023.json'
 import type { CareerEntry, CareerPlayer, RosterPlayer, Team } from '../types'
 
 export const teams: Team[] = [
@@ -18,14 +20,15 @@ export const teams: Team[] = [
   { id: 'dn', name: 'DN SOOPers', shortName: 'DNS', mark: 'DN', accent: '#0C50F1', motto: 'STAY SHARP' },
 ]
 
+export function getTeamLogoSource(team: Pick<Team, 'id' | 'logo'>) {
+  const logo = team.logo ?? `teams/${team.id}.png`
+  if (/^(https?:|data:|blob:)/i.test(logo)) return logo
+  return `${import.meta.env.BASE_URL}${logo.replace(/^\/+/, '')}`
+}
+
 export function getSeasonRosterData(season: number) {
-  return season === rosterData2027.season
-    ? rosterData2027
-    : season === rosterData2025.season
-      ? rosterData2025
-      : season === rosterData2026.season
-        ? rosterData2026
-        : null
+  return [rosterData2027, rosterData2026, rosterData2025, rosterData2024, rosterData2023]
+    .find((seasonData) => seasonData.season === season) ?? null
 }
 
 export function getLocalRoster(season: number, teamId: string): RosterPlayer[] {
@@ -45,7 +48,7 @@ export function getLocalRoster(season: number, teamId: string): RosterPlayer[] {
 export function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
   const normalizedName = player.name.trim().toLowerCase()
   const normalizedKoreanName = player.koreanName.trim()
-  const seasons = [rosterData2025, rosterData2026, rosterData2027]
+  const seasons = [rosterData2023, rosterData2024, rosterData2025, rosterData2026, rosterData2027]
   const career: CareerEntry[] = []
 
   for (const seasonData of seasons) {
@@ -65,6 +68,7 @@ export function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
       }
 
       for (const candidate of uniquePlayers.values()) {
+        const teamLogo = 'logo' in team && typeof team.logo === 'string' ? team.logo : undefined
         career.push({
           season: seasonData.season,
           teamId: team.id,
@@ -74,6 +78,8 @@ export function getPlayerCareer(player: CareerPlayer): CareerEntry[] {
           league: candidate.league ?? 'LCK',
           role: candidate.label,
           label: candidate.role,
+          teamLogo: getTeamLogoSource({ id: team.id, logo: teamLogo }),
+          teamMark: team.mark,
         })
       }
     }
