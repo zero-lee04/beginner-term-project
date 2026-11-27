@@ -1,0 +1,550 @@
+{
+  "season": 2022,
+  "source": "https://www.oneesports.gg/league-of-legends/lck-summer-split-2022-roster/",
+  "teams": [
+    {
+      "id": "gen-g",
+      "name": "Gen.G",
+      "shortName": "GEN",
+      "mark": "G",
+      "accent": "#cfaa43",
+      "motto": "CHANGE THE GAME, CHANGE THE WORLD",
+      "logo": "/teams/gen-g.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Doran",
+          "koreanName": "최현준",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "Peanut",
+          "koreanName": "한왕호",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "YoungJae",
+          "koreanName": "고영재",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "Chovy",
+          "koreanName": "정지훈",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Ruler",
+          "koreanName": "박재혁",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Lehends",
+          "koreanName": "손시우",
+          "league": "LCK"
+        }
+      ]
+    },
+    {
+      "id": "t1",
+      "name": "T1",
+      "shortName": "T1",
+      "mark": "T1",
+      "accent": "#e84048",
+      "motto": "Limitless: Never Ending Story",
+      "logo": "/teams/t1.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Zeus",
+          "koreanName": "최우제",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "Oner",
+          "koreanName": "문현준",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "Faker",
+          "koreanName": "이상혁",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Gumayusi",
+          "koreanName": "이민형",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Keria",
+          "koreanName": "류민석",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Asper",
+          "koreanName": "김태기",
+          "league": "LCK"
+        }
+      ]
+    },
+    {
+      "id": "kt",
+      "name": "KT Rolster",
+      "shortName": "KT",
+      "mark": "KT",
+      "accent": "#ed2939",
+      "motto": "BreakTheLimits",
+      "logo": "/teams/kt.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Rascal",
+          "koreanName": "김광희",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "Cuzz",
+          "koreanName": "문우찬",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "GIDEON",
+          "koreanName": "김민성",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "VicLa",
+          "koreanName": "이가을",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "Aria",
+          "koreanName": "이대광",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Aiming",
+          "koreanName": "김하람",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Life",
+          "koreanName": "김정민",
+          "league": "LCK"
+        }
+      ]
+    },
+    {
+      "id": "hle",
+      "name": "Hanwha Life Esports",
+      "shortName": "HLE",
+      "mark": "H",
+      "accent": "#ff702d",
+      "motto": "BeyondTheChallenge",
+      "logo": "/teams/hle.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "DuDu",
+          "koreanName": "이동주",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "Willer",
+          "koreanName": "김정현",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "OnFleek",
+          "koreanName": "김장겸",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "Karis",
+          "koreanName": "김홍조",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "SamD",
+          "koreanName": "이재훈",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Vsta",
+          "koreanName": "오효성",
+          "league": "LCK"
+        }
+      ]
+    },
+    {
+      "id": "dk",
+      "name": "DWG KIA",
+      "shortName": "DK",
+      "mark": "DK",
+      "accent": "#00a5e5",
+      "motto": "ShowMeYourMadness",
+      "logo": "/teams/dk.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Burdol",
+          "koreanName": "노태윤",
+          "league": "LCK"
+        },
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Nuguri",
+          "koreanName": "장하권",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "Canyon",
+          "koreanName": "김건부",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "ShowMaker",
+          "koreanName": "허수",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "deokdam",
+          "koreanName": "서대길",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Kellin",
+          "koreanName": "김형규",
+          "league": "LCK"
+        }
+      ]
+    },
+    {
+      "id": "drx",
+      "name": "DRX",
+      "shortName": "DRX",
+      "mark": "D",
+      "accent": "#5b9dff",
+      "motto": "Unbreakables",
+      "logo": "/teams/drx.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Kingen",
+          "koreanName": "황성훈",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "Pyosik",
+          "koreanName": "홍창현",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "Zeka",
+          "koreanName": "김건우",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Deft",
+          "koreanName": "김혁규",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Taeyoon",
+          "koreanName": "김태윤",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "BeryL",
+          "koreanName": "조건희",
+          "league": "LCK"
+        }
+      ]
+    },
+    {
+      "id": "bnk",
+      "name": "Liiv SANDBOX",
+      "shortName": "LSB",
+      "mark": "LSB",
+      "accent": "#f0c400",
+      "motto": "Make Your Moment",
+      "logo": "/teams/lsb-2023.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Dove",
+          "koreanName": "김재연",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "Croco",
+          "koreanName": "김동범",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "Clozer",
+          "koreanName": "이주현",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Prince",
+          "koreanName": "이채환",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Envyy",
+          "koreanName": "이명준",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Kael",
+          "koreanName": "김진홍",
+          "league": "LCK"
+        }
+      ]
+    },
+    {
+      "id": "brion",
+      "name": "Fredit BRION",
+      "shortName": "BRO",
+      "mark": "BRO",
+      "accent": "#087140",
+      "motto": "Never Give Up",
+      "logo": "/teams/brion-2023.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Sw0rd",
+          "koreanName": "최성원",
+          "league": "LCK"
+        },
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Morgan",
+          "koreanName": "박기태",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "UmTi",
+          "koreanName": "엄성현",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "Lava",
+          "koreanName": "김태훈",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Hena",
+          "koreanName": "박증환",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Delight",
+          "koreanName": "유환중",
+          "league": "LCK"
+        }
+      ]
+    },
+    {
+      "id": "nongshim",
+      "name": "Nongshim RedForce",
+      "shortName": "NS",
+      "mark": "N",
+      "accent": "#e60012",
+      "motto": "TheUltimateRed",
+      "logo": "/teams/nongshim.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Canna",
+          "koreanName": "김창동",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "Dread",
+          "koreanName": "이진혁",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "Bdd",
+          "koreanName": "곽보성",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Ghost",
+          "koreanName": "장용준",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Effort",
+          "koreanName": "이상호",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Peter",
+          "koreanName": "정윤수",
+          "league": "LCK"
+        }
+      ]
+    },
+    {
+      "id": "kdf",
+      "name": "Kwangdong Freecs",
+      "shortName": "KDF",
+      "mark": "KDF",
+      "accent": "#ff6b00",
+      "motto": "Freecs",
+      "logo": "/teams/kwangdong-2024.png",
+      "players": [
+        {
+          "role": "TOP",
+          "label": "탑",
+          "name": "Kiin",
+          "koreanName": "김기인",
+          "league": "LCK"
+        },
+        {
+          "role": "JUNGLE",
+          "label": "정글",
+          "name": "Ellim",
+          "koreanName": "최엘림",
+          "league": "LCK"
+        },
+        {
+          "role": "MID",
+          "label": "미드",
+          "name": "FATE",
+          "koreanName": "유수혁",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Teddy",
+          "koreanName": "박진성",
+          "league": "LCK"
+        },
+        {
+          "role": "BOT",
+          "label": "바텀",
+          "name": "Leo",
+          "koreanName": "한겨레",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Hoit",
+          "koreanName": "류호성",
+          "league": "LCK"
+        },
+        {
+          "role": "SUPPORT",
+          "label": "서포터",
+          "name": "Moham",
+          "koreanName": "정재훈",
+          "league": "LCK"
+        }
+      ]
+    }
+  ]
+}
