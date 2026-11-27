@@ -53,6 +53,36 @@ const playerProfiles: PlayerProfile[] = [
     ],
   },
   {
+    names: ['ruler', '박재혁'],
+    careerBackground: 'playersign/ruler_sign.png',
+    links: [],
+  },
+  {
+    names: ['chovy', '정지훈'],
+    careerBackground: 'playersign/chovy_sign.png',
+    links: [],
+  },
+  {
+    names: ['cloud', '문현호'],
+    careerBackground: 'playersign/cloud_sign.png',
+    links: [],
+  },
+  {
+    names: ['kiin', '김기인'],
+    careerBackground: 'playersign/kiin_sign.png',
+    links: [],
+  },
+  {
+    names: ['canyon', '김건부'],
+    careerBackground: 'playersign/canyon_sign.png',
+    links: [],
+  },
+  {
+    names: ['duro', '주민규'],
+    careerBackground: 'playersign/duro_sign.png',
+    links: [],
+  },
+  {
     names: ['peyz', '김수환'],
     careerBackground: 'playersign/peyz_sign.png',
     links: [
