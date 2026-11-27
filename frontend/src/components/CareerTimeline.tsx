@@ -2,12 +2,15 @@
 
 import { useEffect, type CSSProperties } from 'react'
 import { getPlayerCareer } from '../data/lck'
+import { getPlayerProfileLinks } from '../data/playerProfiles'
 import type { CareerPlayer } from '../types'
+import PlayerProfileDetails from './PlayerProfileDetails'
 
 type Props = { player: CareerPlayer; onClose: () => void }
 
 export default function CareerTimeline({ player, onClose }: Props) {
   const career = getPlayerCareer(player)
+  const profileLinks = getPlayerProfileLinks(player)
 
   useEffect(() => {
     function closeOnEscape(event: KeyboardEvent) {
@@ -24,6 +27,7 @@ export default function CareerTimeline({ player, onClose }: Props) {
         <p className="career-kicker">PLAYER JOURNEY</p>
         <h2 id="career-title">{player.name}<span> CAREER</span></h2>
         {player.koreanName && <p className="career-real-name">{player.koreanName}</p>}
+        <PlayerProfileDetails key={player.name} links={profileLinks} />
         {career.length > 0 ? (
           <ol className="career-list">
             {career.map((entry, index) => (

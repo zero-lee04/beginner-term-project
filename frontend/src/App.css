@@ -1526,6 +1526,71 @@
   line-height: 1.7;
 }
 
+.career-details {
+  margin-top: 12px;
+}
+
+.career-details-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 12px;
+  border: 1px solid #51404a;
+  border-radius: 999px;
+  background: #21191f;
+  color: #f4f0e8;
+  font-size: 11px;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease;
+}
+
+.career-details-toggle:hover {
+  border-color: #ed3143;
+  background: #2a191f;
+}
+
+.career-details-toggle span {
+  color: #ed5966;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.career-detail-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 14px;
+  animation: fade-up .22s ease both;
+}
+
+.career-detail-bubble {
+  display: grid;
+  gap: 5px;
+  min-width: 145px;
+  padding: 11px 14px;
+  border: 1px solid #3c343e;
+  border-radius: 999px;
+  background: #1c1920;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease;
+}
+
+.career-detail-bubble:hover {
+  transform: translateY(-2px);
+  border-color: #ed5966;
+  background: #26191f;
+}
+
+.career-detail-bubble > span {
+  color: #a39ca6;
+  font-size: 9px;
+}
+
+.career-detail-bubble strong {
+  color: #f4f0e8;
+  font-size: 11px;
+  font-weight: 600;
+}
+
 .stove-section {
   min-height: calc(100vh - 76px);
   padding: 74px clamp(24px, 7.8vw, 126px) 88px;
