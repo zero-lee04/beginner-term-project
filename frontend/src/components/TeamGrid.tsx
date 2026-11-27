@@ -6,7 +6,7 @@ import type { Team } from '../types'
 
 type Props = { teams: Team[]; selectedTeam: Team | null; onSelect: (team: Team) => void }
 
-const teamOrder = ['gen-g', 't1', 'kt', 'hle', 'dk', 'drx', 'bnk', 'brion', 'nongshim', 'dn', 'kdf']
+const teamOrder = ['gen-g', 't1', 'kt', 'hle', 'dk', 'drx', 'bnk', 'brion', 'nongshim', 'dn', 'kdf', 'griffin', 'seolhaeone']
 
 export default function TeamGrid({ teams, selectedTeam, onSelect }: Props) {
   if (teams.length === 0) return <p className="season-empty">이 시즌의 팀 목록은 아직 등록되지 않았습니다.</p>
