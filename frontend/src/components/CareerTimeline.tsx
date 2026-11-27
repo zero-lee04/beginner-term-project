@@ -2,13 +2,18 @@
 
 import { useEffect, type CSSProperties } from 'react'
 import { getPlayerCareer } from '../data/lck'
+import { getPlayerSeasonAchievements } from '../data/playerAchievements'
 import { getPlayerCareerBackground, getPlayerProfileLinks } from '../data/playerProfiles'
 import type { CareerPlayer } from '../types'
 import PlayerProfileDetails from './PlayerProfileDetails'
 
-type Props = { player: CareerPlayer; onClose: () => void }
+type Props = {
+  player: CareerPlayer
+  onClose: () => void
+  onSelectAchievement: (year: number, eventName: string, teamId: string) => void
+}
 
-export default function CareerTimeline({ player, onClose }: Props) {
+export default function CareerTimeline({ player, onClose, onSelectAchievement }: Props) {
   const career = getPlayerCareer(player)
   const profileLinks = getPlayerProfileLinks(player)
   const careerBackground = getPlayerCareerBackground(player)
@@ -51,6 +56,21 @@ export default function CareerTimeline({ player, onClose }: Props) {
                 <span className="career-entry-info">
                   <strong>{entry.teamShortName}</strong>
                   <span>{entry.league === 'LCK CL' ? 'LCK 챌린저스' : entry.league} · {entry.role}</span>
+                  {getPlayerSeasonAchievements(player, entry.season).length > 0 && (
+                    <span className="career-achievement-list">
+                      {getPlayerSeasonAchievements(player, entry.season).map((achievement) => (
+                        <button
+                          type="button"
+                          className={`career-achievement career-achievement-${achievement.result === '우승' ? 'champion' : 'runner-up'}`}
+                          key={`${entry.season}-${achievement.competition}`}
+                          onClick={() => onSelectAchievement(entry.season, achievement.competition, entry.teamId)}
+                          aria-label={`${entry.season} ${achievement.competition} ${achievement.result} 결과 페이지로 이동`}
+                        >
+                          {achievement.competition} {achievement.result}
+                        </button>
+                      ))}
+                    </span>
+                  )}
                 </span>
                 {entry.season === 2027 && <span className="career-projection">전망</span>}
                 {index < career.length - 1 && <span className="career-connector" aria-hidden="true" />}

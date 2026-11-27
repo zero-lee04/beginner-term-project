@@ -7,9 +7,14 @@ import { getLocalRoster, getSeasonRosterData, getTeamLogoSource } from '../data/
 import type { CareerPlayer, RosterPlayer, StaffMember, Team } from '../types'
 import CareerTimeline from './CareerTimeline'
 
-type Props = { team: Team; season: number; onBack: () => void }
+type Props = {
+  team: Team
+  season: number
+  onBack: () => void
+  onSelectAchievement: (year: number, eventName: string, teamId: string) => void
+}
 
-export default function TeamRoster({ team, season, onBack }: Props) {
+export default function TeamRoster({ team, season, onBack, onSelectAchievement }: Props) {
   const [players, setPlayers] = useState<RosterPlayer[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -127,7 +132,7 @@ export default function TeamRoster({ team, season, onBack }: Props) {
                 <p className="roster-footnote">선수 명단은 {season} 시즌 로스터 기준입니다.</p>
               </>}
       </div>
-      {careerPlayer && <CareerTimeline player={careerPlayer} onClose={() => setCareerPlayer(null)} />}
+      {careerPlayer && <CareerTimeline player={careerPlayer} onClose={() => setCareerPlayer(null)} onSelectAchievement={onSelectAchievement} />}
     </section>
   )
 }

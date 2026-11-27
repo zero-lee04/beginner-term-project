@@ -1,6 +1,6 @@
 /* LCK 프론트엔드 앱 */
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from './firebase'
 import { getSeasonRosterData, teams } from './data/lck'
@@ -8,6 +8,9 @@ import type { CareerPlayer, Team } from './types'
 import LoginScreen from './components/LoginScreen'
 import CareerTimeline from './components/CareerTimeline'
 import PlayerSearch from './components/PlayerSearch'
+import LeagueArchive from './components/LeagueArchive'
+import ArchivePage from './components/ArchivePage'
+import { leagueSeasons, type LeagueResultRecord } from './data/leagueResults'
 import StoveLeague from './components/StoveLeague'
 import TeamGrid from './components/TeamGrid'
 import TeamRoster from './components/TeamRoster'
@@ -21,6 +24,29 @@ function App() {
   const [showLogin, setShowLogin] = useState(false)
   const [showRoster, setShowRoster] = useState(false)
   const [careerPlayer, setCareerPlayer] = useState<CareerPlayer | null>(null)
+  const [activePage, setActivePage] = useState<'teams' | 'league' | 'archive'>('teams')
+  const [archiveRecord, setArchiveRecord] = useState<LeagueResultRecord | null>(null)
+
+  const openArchiveRecord = useCallback((record: LeagueResultRecord) => {
+    setArchiveRecord(record)
+    setCareerPlayer(null)
+    setShowRoster(false)
+    setSelectedTeam(null)
+    setActivePage('archive')
+  }, [])
+
+  function openLeagueAchievement(year: number, eventName: string, teamId: string) {
+    const event = leagueSeasons.find((season) => season.year === year)?.events.find((item) => item.name === eventName)
+    const finalist = event?.finalists.find((item) => item.id === teamId)
+    if (event && finalist) {
+      openArchiveRecord({ ...finalist, year, eventName })
+      return
+    }
+    setCareerPlayer(null)
+    setShowRoster(false)
+    setSelectedTeam(null)
+    setActivePage('league')
+  }
 
   useEffect(() => {
     let isActive = true
@@ -83,22 +109,28 @@ function App() {
   function returnToTeams() {
     setShowRoster(false)
     setSelectedTeam(null)
+    setActivePage('teams')
   }
 
   return (
     <main className="page-shell">
       <header className="topbar">
-        <a className="wordmark" href="#home" aria-label="LCK 홈" onClick={() => setShowLogin(false)}>
+        <a className="wordmark" href="#home" aria-label="LCK 홈" onClick={() => { setShowLogin(false); setActivePage('teams') }}>
           <span className="wordmark-symbol">L</span><span>LCK<span className="wordmark-period">.</span></span>
         </a>
         {!showLogin && <nav className="topnav" aria-label="주요 메뉴">
-          <a className="nav-active" href="#teams">TEAMS</a><a href="#teams">LEAGUE</a><a href="#teams">COMMUNITY</a><a href="#stove-league">STOVE LEAGUE</a>
+          <a className={activePage === 'teams' ? 'nav-active' : ''} href="#teams" onClick={() => { setActivePage('teams'); setArchiveRecord(null); setShowRoster(false); setSelectedTeam(null) }}>TEAMS</a>
+          <a className={activePage === 'league' ? 'nav-active' : ''} href="#league" onClick={() => { setActivePage('league'); setArchiveRecord(null); setShowRoster(false); setSelectedTeam(null) }}>LEAGUE</a>
+          <a href="#teams" onClick={() => { setActivePage('teams'); setShowRoster(false); setSelectedTeam(null) }}>COMMUNITY</a>
+          <a href="#stove-league" onClick={() => { setActivePage('teams'); setShowRoster(false); setSelectedTeam(null) }}>STOVE LEAGUE</a>
+          <a className={activePage === 'archive' ? 'nav-active' : ''} href="#archive" onClick={() => { setActivePage('archive'); setArchiveRecord(null); setShowRoster(false); setSelectedTeam(null) }}>ARCHIVE</a>
         </nav>}
         {!showLogin && <PlayerSearch
           teams={seasonTeams}
           onSelectPlayer={(player) => setCareerPlayer(player)}
           onSelectTeam={(team) => {
             setCareerPlayer(null)
+            setActivePage('teams')
             selectTeam(team)
           }}
         />}
@@ -108,7 +140,9 @@ function App() {
       </header>
 
       {showLogin ? <LoginScreen onBack={() => setShowLogin(false)} />
-        : showRoster && selectedTeam ? <TeamRoster team={selectedTeam} season={selectedSeason} onBack={returnToTeams} />
+        : showRoster && selectedTeam ? <TeamRoster team={selectedTeam} season={selectedSeason} onBack={returnToTeams} onSelectAchievement={openLeagueAchievement} />
+          : activePage === 'league' ? <><LeagueArchive onSelectFinalist={openArchiveRecord} /><footer className="site-footer"><span>LOOP IN. LOCK IN. LCK.</span><span>MADE FOR LCK FANS <b>✳</b> 2026</span></footer></>
+          : activePage === 'archive' ? <><ArchivePage record={archiveRecord} onSelectRecord={openArchiveRecord} onBack={() => setArchiveRecord(null)} /><footer className="site-footer"><span>LOOP IN. LOCK IN. LCK.</span><span>MADE FOR LCK FANS <b>✳</b> 2026</span></footer></>
           : <>
             <section className="hero" id="home">
               <div className="hero-watermark" aria-hidden="true">LCK</div>
@@ -141,7 +175,7 @@ function App() {
             <StoveLeague />
             <footer className="site-footer"><span>LOOP IN. LOCK IN. LCK.</span><span>MADE FOR LCK FANS <b>✳</b> 2026</span></footer>
           </>}
-      {careerPlayer && <CareerTimeline player={careerPlayer} onClose={() => setCareerPlayer(null)} />}
+      {careerPlayer && <CareerTimeline player={careerPlayer} onClose={() => setCareerPlayer(null)} onSelectAchievement={openLeagueAchievement} />}
     </main>
   )
 }
