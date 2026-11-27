@@ -17,6 +17,7 @@ type PlayerProfile = {
 const playerProfiles: PlayerProfile[] = [
   {
     names: ['zeus', '최우제'],
+    careerBackground: 'playersign/zeus_sign.png',
     links: [
       { category: '개인 SNS', title: 'Instagram · @godthunderzeus', href: 'https://www.instagram.com/godthunderzeus/' },
       { category: '개인 방송국', title: 'SOOP · 제우스', href: 'https://www.sooplive.com/station/kcphy0909rk' },
@@ -33,6 +34,7 @@ const playerProfiles: PlayerProfile[] = [
   },
   {
     names: ['oner', '문현준'],
+    careerBackground: 'playersign/oner_sign.png',
     links: [
       { category: '개인 SNS', title: 'Instagram · @t1_oner', href: 'https://www.instagram.com/t1_oner/' },
       { category: '개인 방송국', title: 'SOOP · onerrrr', href: 'https://www.sooplive.com/station/ansguswns519' },
@@ -42,7 +44,7 @@ const playerProfiles: PlayerProfile[] = [
   },
   {
     names: ['faker', '이상혁'],
-    careerBackground: 'faker_sign.png',
+    careerBackground: 'playersign/faker_sign.png',
     links: [
       { category: '개인 SNS', title: 'Instagram · @faker', href: 'https://www.instagram.com/faker/' },
       { category: '개인 방송국', title: 'SOOP · Faker', href: 'https://www.sooplive.com/station/faker' },
@@ -52,6 +54,7 @@ const playerProfiles: PlayerProfile[] = [
   },
   {
     names: ['peyz', '김수환'],
+    careerBackground: 'playersign/peyz_sign.png',
     links: [
       { category: '개인 SNS', title: 'Instagram · @lol_peyz', href: 'https://www.instagram.com/lol_peyz/' },
       { category: '개인 방송국', title: 'SOOP · 페이즈으', href: 'https://www.sooplive.com/station/rlantnghks' },
@@ -69,6 +72,7 @@ const playerProfiles: PlayerProfile[] = [
   },
   {
     names: ['keria', '류민석'],
+    careerBackground: 'playersign/keria_sign.png',
     links: [
       { category: '개인 SNS', title: 'Instagram · @keria_minseok', href: 'https://www.instagram.com/keria_minseok/' },
       { category: '개인 방송국', title: 'SOOP · 케리아아', href: 'https://www.sooplive.com/station/fbalstjr1234' },
