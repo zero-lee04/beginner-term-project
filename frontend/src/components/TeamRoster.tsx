@@ -1,7 +1,7 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import { collection, getDocs, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase'
-import { getLocalRoster, getSeasonRosterData } from '../data/lck'
+import { getLocalRoster, getSeasonRosterData, getTeamLogoSource } from '../data/lck'
 import type { CareerPlayer, RosterPlayer, StaffMember, Team } from '../types'
 import CareerTimeline from './CareerTimeline'
 
@@ -61,7 +61,7 @@ export default function TeamRoster({ team, season, onBack }: Props) {
         <button className="roster-back" type="button" onClick={onBack}><span aria-hidden="true">←</span> 전체 팀 목록</button>
         <div className="roster-heading">
           <div className="roster-logo" aria-hidden="true">
-            <img src={team.logo ?? `${import.meta.env.BASE_URL}teams/${team.id}.png`} alt="" onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-logo')} onError={(event) => event.currentTarget.remove()} />
+            <img src={getTeamLogoSource(team)} alt="" onLoad={(event) => event.currentTarget.parentElement?.classList.add('has-logo')} onError={(event) => event.currentTarget.remove()} />
             <span>{team.mark}</span>
           </div>
           <div>
